@@ -24,4 +24,4 @@ Making chances to the alerts can be found under `src/pages/alerts/AlertsComponen
 Making chances to the Blueprints & Devices can be found under `src/pages/blueprints-and-devices/BlueprintsAndDevicesComponent.jsx
 
 # Settings Page
-Making chances to the settings can be found under `src/pages/settings/SettingsComponent.jsx
+Making chances to the settings can be found under `src/pages/settings/SettingsComponent.jsx`
