@@ -11,7 +11,7 @@ const NavBar = () => {
             AeroSpec
          </Typography>
          <NavChoices text="Home" link="" icon={<HomeOutlinedIcon fontSize="large" style={{color: 'white'}} />} />
-         <NavChoices text="Alerts" link="alert" />
+         <NavChoices text="Alerts" link="alerts" />
          <NavChoices text="Blueprints & Devices" link="blueprints-and-devices" />
          <NavChoices text="Settings" link="settings" />
       </Box>

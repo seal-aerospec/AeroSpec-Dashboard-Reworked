@@ -1,8 +1,9 @@
 import MainLayout from '../global/MainLayout';
+import HomeComponent from './HomeComponent';
 
 const Home = () => {
    return ( 
-      <MainLayout />
+      <MainLayout content={<HomeComponent />} />
     );
 }
  

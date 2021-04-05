@@ -1,19 +1,24 @@
-import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import NavBar from '../global/navbar/NavBar';
+import TopBar from '../global/topbar/TopBar';
 
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
-   gridItem: {
-      height: '100vh',
-      
+   componentContainer: {
+      height: '200vh',
+      width: '85vw'
    },
-   nav: {
-      width: "16.5vw",
+   navBar: {
       height: '100vh',
-      position: 'fixed',
+      width: '15vw',
+      top: '0',
+      margin: '0',
+      position: 'fixed'
+   },
+   navContainer: {
+      width: '15vw'
    }
 })
 
@@ -21,15 +26,19 @@ const MainLayout = (props) => {
    const classes = useStyles()
 
    return ( 
-      <Grid container>
-         <Grid xs={2} item className={classes.gridItem}>
-            <NavBar />
-         </Grid>
+      <Box display="flex">
 
-         <Grid xs={10} item className={classes.gridItem}>
+         <Box component="span" className={classes.navContainer}>
+            <Box className={classes.navBar}>
+               <NavBar  />
+            </Box>
+         </Box>
+         
+         <Box component="span" className={classes.componentContainer}>
+            <TopBar />
             {props.content}
-         </Grid>
-      </Grid>
+         </Box>
+      </Box>
     );
 }
  
