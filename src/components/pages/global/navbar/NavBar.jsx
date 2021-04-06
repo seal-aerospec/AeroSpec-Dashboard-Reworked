@@ -1,4 +1,5 @@
 import NavChoices from './NavChoices';
+import NavDivider from './NavDivider';
 
 import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
@@ -8,22 +9,16 @@ import List from '@material-ui/core/List';
 import AlertIcon from '../../../../assets/UI_component_svg/Alert2Icon';
 import BlueprintDeviceIcon from '../../../../assets/UI_component_svg/BlueprintsDevicesIcon';
 import HomeIcon from '../../../../assets/UI_component_svg/HomeIcon';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '../../../../assets/UI_component_svg/MenuIcon';
 import navbarLogo from '../../../../assets/UI_component/AeroSpec PNG-7@2x.png';
 import SettingsIcon from '../../../../assets/UI_component_svg/SettingsIcon';
 
 const useStyles = makeStyles((theme) => ({
-    drawer: {
-      width: '15%',
-      flexShrink: 1,
-    },
-    drawerPaper: {
+   drawerPaper: {
       backgroundColor: '#3E6EB0',
-      width: '15%',
+      width: '15vw',
     },
     drawerHeader: {
-      height: '7%',
+      height: '7vh',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -43,7 +38,6 @@ const NavBar = (props) => {
    const classes = useStyles();
    return (
       <Drawer
-         className={classes.drawer}
          variant="persistent"
          anchor="left"
          open={props.menuOpen}
@@ -58,16 +52,19 @@ const NavBar = (props) => {
                label="Home"
                link="/"
             />
+            <NavDivider />
             <NavChoices
                icon={<AlertIcon />}
                label="Alerts"
                link="/alerts"
             />
+            <NavDivider />
             <NavChoices
                icon={<BlueprintDeviceIcon />}
                label="Blueprints & Devices"
                link="/blueprints-and-devices"
             />
+            <NavDivider />
             <NavChoices
                icon={<SettingsIcon />}
                label="Settings"
