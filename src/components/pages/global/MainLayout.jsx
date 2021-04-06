@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import NavBar from '../global/navbar/NavBar';
@@ -23,23 +24,30 @@ const useStyles = makeStyles({
 })
 
 const MainLayout = (props) => {
-   const classes = useStyles()
+   const [menuOpen, setMenuOpen] = useState(true);
+   const classes = useStyles();
 
-   return ( 
+   return (
       <Box display="flex">
 
          <Box component="span" className={classes.navContainer}>
             <Box className={classes.navBar}>
-               <NavBar  />
+               <NavBar
+                  menuOpen={menuOpen}
+                  setMenuOpen={setMenuOpen}
+               />
             </Box>
          </Box>
-         
+
          <Box component="span" className={classes.componentContainer}>
-            <TopBar />
+            <TopBar
+               menuOpen={menuOpen}
+               setMenuOpen={setMenuOpen}
+            />
             {props.content}
          </Box>
       </Box>
     );
 }
- 
+
 export default MainLayout;

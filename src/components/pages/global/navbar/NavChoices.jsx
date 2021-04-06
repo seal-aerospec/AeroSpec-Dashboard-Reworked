@@ -1,23 +1,25 @@
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
 
+const useStyles = makeStyles((theme) => ({
+   drawerText: {
+      color: 'white',
+   }
+}));
+
 const NavChoices = (props) => {
-   return ( 
-      <Box>
-         <Button
-          startIcon={props.icon}
-          variant="text" 
-          color="primary"
-          style={{height: '8vh'}} 
-          fullWidth>
-            <Link to={props.link} style={{textDecoration: 'none', color: 'white'}}>
-               {props.text}
-            </Link>
-         </Button>
-         <hr style={{width: '90%', opacity: '30%'}} />
-      </Box>
-    );
+   const classes = useStyles();
+   return (
+      <ListItem button key={props.label} component={Link} to={props.link}>
+         <ListItemIcon>
+            {props.icon}
+         </ListItemIcon>
+         <ListItemText primary={props.label} className={classes.drawerText} />
+      </ListItem>
+   );
 }
- 
+
 export default NavChoices;

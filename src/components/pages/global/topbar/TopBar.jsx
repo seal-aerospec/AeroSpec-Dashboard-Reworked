@@ -1,41 +1,77 @@
+import { useState } from 'react';
+
 import { makeStyles } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+import IconButton from '@material-ui/core/IconButton';
+import Toolbar from '@material-ui/core/Toolbar';
 
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
+import MenuIcon from '../../../../assets/UI_component_svg/MenuIcon';
+import NotificationIcon from '../../../../assets/UI_component_svg/NotificationIcon';
 
-const useStyles = makeStyles({
-   topBar: {
-      height: '7vh',
-      marginLeft: '1vw',
-      boxShadow: '0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)'
-   }
-})
+import clsx from 'clsx';
+import SuggestionButton from '../SuggestionButton';
+
+const useStyles = makeStyles((theme) => ({
+   appBar: {
+      backgroundColor: 'white',
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      position: 'relative',
+    },
+    appBarShift: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    toolbar: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
+}))
 
 const TopBar = (props) => {
+   const [modalOpen, setModalOpen] = useState(false);
    const classes = useStyles();
-   return ( 
-      <Box className={classes.topBar}>
-         <Button onClick={props.menuClick}>
-            <MenuIcon fontSize="large" />
-         </Button>
-         
-         <Button onClick={props.alertClick}>
-            <NotificationsNoneIcon fontSize="large" />
-         </Button>
-         
-         <Button onClick={props.suggestionsClick} startIcon={<EmojiObjectsOutlinedIcon fontSize="large" />}>
-            <Typography>
-               Suggestions
-            </Typography>
-         </Button>
-         
 
-      </Box>
-    );
+   return (
+   <AppBar
+      elevation={1}
+      className={clsx(classes.appBar, {
+        [classes.appBarShift]: !props.menuOpen,
+      })}
+    >
+      <Toolbar className={classes.toolbar}>
+         <div>
+            <IconButton
+               edge="start"
+               color="relative"
+               aria-label="menu"
+               onClick={props.menuOpen ? () => props.setMenuOpen(false) : () => props.setMenuOpen(true)}
+            >
+               <MenuIcon />
+            </IconButton>
+
+            <IconButton
+               edge="start"
+               href="/alerts"
+            >
+               <NotificationIcon />
+            </IconButton>
+         </div>
+
+         <div>
+            <SuggestionButton
+               modalOpen={modalOpen}
+               setModalOpen={setModalOpen}
+               suggestionsClick={props.suggestionsClick}
+            />
+         </div>
+       </Toolbar>
+   </AppBar>
+   );
 }
- 
+
 export default TopBar;
