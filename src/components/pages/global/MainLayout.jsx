@@ -39,20 +39,6 @@ const MainLayout = (props) => {
    const classes = useStyles();
 
    return (
-      // <Grid container direction="column">
-      //    <Grid item container className={classes.componentContainer}>
-      //       <TopBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      //    </Grid>
-      //    <Grid item container>
-      //       <Grid item md={2}>
-      //          <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      //       </Grid>
-      //       <Grid item md={10}>
-      //          {props.content}
-      //       </Grid>
-      //    </Grid>
-      // </Grid>
-
       <Box display="flex" className={classes.layoutContainer}>
 
          <Box component="span" display={menuOpen ? 'block' : 'none'} className={classes.navContainer}>
