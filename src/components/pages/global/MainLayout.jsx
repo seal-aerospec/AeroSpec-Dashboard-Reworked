@@ -6,14 +6,16 @@ import TopBar from '../global/topbar/TopBar';
 
 import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
+import navbarLogo from '../../../assets/UI_component/AeroSpec PNG-7@2x.png';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
    layoutContainer: {
       backgroundColor: '#f8fcff',
    },
    componentContainer: {
       height: '200vh',
-      width: '100vw',
+      width: '84.5vw',
+      marginLeft: '0.5vw',
       position: "relative"
    },
    componentContainerShift: {
@@ -32,7 +34,22 @@ const useStyles = makeStyles({
    navContainer: {
       width: '15vw',
    },
-})
+   drawerHeader: {
+      height: '7vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: theme.spacing(1, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      backgroundColor: 'white',
+    },
+    drawerHeaderImg: {
+      display: 'block',
+      maxWidth: '70%',
+      maxHeight: 'auto',
+    },
+}))
 
 const MainLayout = (props) => {
    const [menuOpen, setMenuOpen] = useState(true);
@@ -41,7 +58,10 @@ const MainLayout = (props) => {
    return (
       <Box display="flex" className={classes.layoutContainer}>
 
-         <Box component="span" display={menuOpen ? 'block' : 'none'} className={classes.navContainer}>
+         <Box component="span" className={classes.navContainer}>
+            <Box className={classes.drawerHeader}>
+               <img src={navbarLogo} alt="AeroSpec Logo" className={classes.drawerHeaderImg} />
+            </Box>
             <Box className={classes.navBar}>
                <NavBar
                   menuOpen={menuOpen}

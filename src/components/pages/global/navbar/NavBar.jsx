@@ -15,6 +15,8 @@ import SettingsIcon from '../../../../assets/UI_component_svg/SettingsIcon';
 const useStyles = makeStyles((theme) => ({
    drawerPaper: {
       backgroundColor: '#3E6EB0',
+      height: '91vh',
+      marginTop: '9vh',
       width: '15vw',
     },
     drawerHeader: {
@@ -43,9 +45,9 @@ const NavBar = (props) => {
          open={props.menuOpen}
          classes={{ paper: classes.drawerPaper }}
       >
-         <Box className={classes.drawerHeader}>
+         {/* <Box className={classes.drawerHeader}>
             <img src={navbarLogo} alt="AeroSpec Logo" className={classes.drawerHeaderImg} />
-         </Box>
+         </Box> */}
          <List>
             <NavChoices
                icon={<HomeIcon />}
