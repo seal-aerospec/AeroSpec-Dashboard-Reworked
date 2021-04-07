@@ -32,6 +32,9 @@ const useStyles = makeStyles({
    navContainer: {
       width: '15vw',
    },
+   contentContainer: {
+      marginLeft: '100vw'
+   }
 })
 
 const MainLayout = (props) => {
@@ -61,7 +64,7 @@ const MainLayout = (props) => {
                   setMenuOpen={setMenuOpen}
                />
             </Box>
-            <Box component="span">
+            <Box component="span" className={classes.contentContainer}>
                {props.content}
             </Box>
          </Box>
