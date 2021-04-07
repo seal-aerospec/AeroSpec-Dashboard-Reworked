@@ -17,29 +17,30 @@ const romanTheme = createMuiTheme({
          main: '#65272C'
       },
    },
-   /*
    typography: {
-      fontFamily: 'Libre+Baskerville',
+      fontFamily: [
+        'Montserrat',
+        'sans-serif',
+      ].join(','),
       fontWeightRegular: 400,
-      fontWeightBold: 700 
-   }
-   */
+      fontWeightBold: 700,
+    },
 })
 
 function App() {
   return (
-     <ThemeProvider theme={romanTheme}>
+   <ThemeProvider theme={romanTheme}>
    <Router>
    <Switch>
 
       <Route exact path="/">
          <Home />
       </Route>
-      
+
       <Route exact path="/alerts">
          <Alerts />
       </Route>
-      
+
       <Route exact path="/blueprints-and-devices">
          <BlueprintAndDevices />
       </Route>
@@ -49,8 +50,8 @@ function App() {
       </Route>
 
    </Switch>
-</Router>
-</ThemeProvider>
+   </Router>
+   </ThemeProvider>
   );
 }
 

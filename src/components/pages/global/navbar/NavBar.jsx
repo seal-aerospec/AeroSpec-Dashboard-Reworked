@@ -1,21 +1,78 @@
 import NavChoices from './NavChoices';
+import NavDivider from './NavDivider';
 
+import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
 
-const NavBar = () => {
-   return ( 
-      <Box height="100%" width="100%" bgcolor="primary.main">
-         <Typography variant="h4" color="primary" style={{textAlign: 'center', paddingTop: '2vh', paddingBottom: '2vh', backgroundColor: 'white'}}>
-            AeroSpec
-         </Typography>
-         <NavChoices text="Home" link="" icon={<HomeOutlinedIcon fontSize="large" style={{color: 'white'}} />} />
-         <NavChoices text="Alerts" link="alerts" />
-         <NavChoices text="Blueprints & Devices" link="blueprints-and-devices" />
-         <NavChoices text="Settings" link="settings" />
-      </Box>
-    );
+import AlertIcon from '../../../../assets/UI_component_svg/Alert2Icon';
+import BlueprintDeviceIcon from '../../../../assets/UI_component_svg/BlueprintsDevicesIcon';
+import HomeIcon from '../../../../assets/UI_component_svg/HomeIcon';
+import navbarLogo from '../../../../assets/UI_component/AeroSpec PNG-7@2x.png';
+import SettingsIcon from '../../../../assets/UI_component_svg/SettingsIcon';
+
+const useStyles = makeStyles((theme) => ({
+   drawerPaper: {
+      backgroundColor: '#3E6EB0',
+      width: '15vw',
+    },
+    drawerHeader: {
+      height: '7vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: theme.spacing(1, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      backgroundColor: 'white',
+    },
+    drawerHeaderImg: {
+      display: 'block',
+      maxWidth: '70%',
+      maxHeight: 'auto',
+    },
+}))
+
+const NavBar = (props) => {
+   const classes = useStyles();
+   return (
+      <Drawer
+         variant="persistent"
+         anchor="left"
+         open={props.menuOpen}
+         classes={{ paper: classes.drawerPaper }}
+      >
+         <Box className={classes.drawerHeader}>
+            <img src={navbarLogo} alt="AeroSpec Logo" className={classes.drawerHeaderImg} />
+         </Box>
+         <List>
+            <NavChoices
+               icon={<HomeIcon />}
+               label="Home"
+               link="/"
+            />
+            <NavDivider />
+            <NavChoices
+               icon={<AlertIcon />}
+               label="Alerts"
+               link="/alerts"
+            />
+            <NavDivider />
+            <NavChoices
+               icon={<BlueprintDeviceIcon />}
+               label="Blueprints & Devices"
+               link="/blueprints-and-devices"
+            />
+            <NavDivider />
+            <NavChoices
+               icon={<SettingsIcon />}
+               label="Settings"
+               link="/settings"
+            />
+         </List>
+      </Drawer>
+   );
 }
- 
+
 export default NavBar;
