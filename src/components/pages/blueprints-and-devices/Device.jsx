@@ -7,9 +7,9 @@ import Typography from '@material-ui/core/Typography';
 
 import BinIcon from '../../../assets/UI_component_svg/BinIcon';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
    cardContainer: {
-      margin: '1vw',
+      margin: theme.spacing(1),
       padding: '1vw',
    },
    header: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
       borderRadius: 20,
       height: '3vh',
    }
-});
+}));
 
 const Device = (props) => {
    const classes = useStyles();

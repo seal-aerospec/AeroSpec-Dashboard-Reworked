@@ -61,9 +61,7 @@ const MainLayout = (props) => {
                   setMenuOpen={setMenuOpen}
                />
             </Box>
-            <Box component="span" className={classes.contentContainer}>
-               {props.content}
-            </Box>
+            {props.content}
          </Box>
       </Box>
     );

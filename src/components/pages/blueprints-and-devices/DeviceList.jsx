@@ -6,18 +6,18 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
    listContainer: {
       height: '100%',
       padding: 5,
-      margin: '2vh',
+      margin: theme.spacing(3),
    },
    header: {
       display: 'flex',
-      margin: '1vw',
+      margin: theme.spacing(1),
       justifyContent: "space-between"
    }
-});
+}));
 
 const DeviceList = () => {
    const classes = useStyles();

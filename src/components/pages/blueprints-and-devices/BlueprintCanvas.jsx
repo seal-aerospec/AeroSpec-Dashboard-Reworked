@@ -10,6 +10,10 @@ import DeviceIcon from '../../../assets/UI_component/source 2.png';
 import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
 
 const useStyles = makeStyles((theme) => ({
+   canvas: {
+      display: 'flex',
+      flexDirection: 'column',
+   },
    blueprintHeader: {
       display: 'flex',
       justifyContent: 'space-between',
@@ -86,7 +90,7 @@ const BlueprintCanvas = (props) => {
       reader.onload = function (event) {
          var img = new Image();
          img.onload = function () {
-            ctx.drawImage(img, 0, 0, 800, 700);
+            ctx.drawImage(img, 0, 0);
          }
          img.src = event.target.result;
       }
@@ -109,7 +113,7 @@ const BlueprintCanvas = (props) => {
             </Box>
          </Box>
          <Box className={classes.canvas}>
-            <canvas id="board" ref={canvasRef} onClick={drawOne} width="800px" height="700px" />
+            <canvas id="board" display="block" ref={canvasRef} onClick={drawOne} />
             <img id="bp" src={ExampleBlueprint} alt="blueprint" style={{ display: "none" }} />
             <input type="file" title="New Blueprint" id="imageLoader" name="imageLoader" onChange={handleImage} />
          </Box>
