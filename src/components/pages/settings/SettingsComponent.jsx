@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 const SettingComponent = () => {
    return (
-      <Box>
+      <Box display="flex" margin="3vh 5vh 3vh 5vh">
          <Typography variant="h4">
             Settings
          </Typography>

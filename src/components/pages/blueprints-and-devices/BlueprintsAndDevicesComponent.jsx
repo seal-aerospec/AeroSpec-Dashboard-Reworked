@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     blueprintContainer: {
-      margin: '2vh 0vh 2vh 5vh',
+      margin: '3vh 0vh 0vh 5vh',
       width: '70vw',
     },
     deviceContainer: {

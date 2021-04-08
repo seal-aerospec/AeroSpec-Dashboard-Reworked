@@ -44,7 +44,7 @@ const TopBar = (props) => {
 
                <IconButton
                   edge="start"
-                  href="/alerts"
+                  href="alerts"
                >
                   <NotificationIcon />
                </IconButton>
