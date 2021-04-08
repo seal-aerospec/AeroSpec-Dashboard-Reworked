@@ -12,12 +12,12 @@ const useStyles = makeStyles({
       backgroundColor: '#f8fcff',
    },
    componentContainer: {
-      height: '200vh',
+      height: '100%',
       width: '100vw',
       position: "relative"
    },
    componentContainerShift: {
-      height: '200vh',
+      height: '100%',
       width: '84.5vw',
       marginLeft: '0.5vw',
       position: "relative"
@@ -32,9 +32,6 @@ const useStyles = makeStyles({
    navContainer: {
       width: '15vw',
    },
-   contentContainer: {
-      marginLeft: '100vw'
-   }
 })
 
 const MainLayout = (props) => {
