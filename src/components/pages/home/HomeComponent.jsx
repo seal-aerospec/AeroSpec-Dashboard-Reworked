@@ -1,3 +1,5 @@
+import TimeSlider from './TimeSlider';
+
 import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -25,7 +27,9 @@ const useStyles = makeStyles((theme) => ({
     },
     blueprintContainer: {
        display: 'flex',
+       flexDirection: 'column',
        justifyContent: 'center',
+       alignItems: 'center',
        backgroundColor: 'white',
        padding: '2vh',
     }
@@ -47,6 +51,7 @@ const HomeComponent = () => {
             </Button>
          </Box>
          <Box className={classes.blueprintContainer}>
+            <TimeSlider />
             <img src={ExampleBlueprint} alt="blueprint" />
          </Box>
       </Box>
