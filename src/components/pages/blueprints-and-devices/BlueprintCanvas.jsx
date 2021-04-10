@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 import DeviceIcon from '../../../assets/UI_component/source 2.png';
 import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
+import EditBlueprintButton from './EditBlueprintButton';
 
 const useStyles = makeStyles((theme) => ({
    canvas: {
@@ -26,16 +27,6 @@ const useStyles = makeStyles((theme) => ({
       color: '#ffffff',
       borderRadius: 20,
    },
-   editBtn: {
-      backgroundColor: "#FFFFFF",
-      padding: '12px 24px',
-      margin: theme.spacing(1),
-      borderRadius: '10em',
-      fontSize: '16px',
-      color: '#486EAB',
-      textTransform: 'none',
-      border: '1px #486EAB solid',
-   },
    saveBtn: {
       backgroundColor: "#486EAB",
       padding: '12px 24px',
@@ -53,6 +44,7 @@ const BlueprintCanvas = (props) => {
    const list = [];
    const classes = useStyles();
    const canvasRef = useRef(null);
+   let [modalOpen, setModalOpen] = useState(false);
 
    // draws placed device on blueprint
    useEffect(() => {
@@ -104,25 +96,19 @@ const BlueprintCanvas = (props) => {
             <Typography variant="body1">
                Pick and place the sensor on its location
             </Typography>
-            <Box>
-               <Button component="label" className={classes.editBtn}>
-                  Edit Blueprint
-                  <input
-                     type="file"
-                     title="New Blueprint"
-                     id="imageLoader"
-                     name="imageLoader"
-                     onChange={handleImage}
-                     hidden
-                  />
-               </Button>
+            <Box display="flex" justifyContent="center">
+               <EditBlueprintButton
+                  modalOpen={modalOpen}
+                  setModalOpen={setModalOpen}
+                  handleImage={handleImage}
+               />
                <Button className={classes.saveBtn}>
                   Save Changes
                </Button>
             </Box>
          </Box>
          <div>
-            <canvas id="board" display="block" ref={canvasRef} width="800px" height="700px" onClick={drawOne} />
+            <canvas id="board" display="block" ref={canvasRef} width="700px" height="500px" onClick={drawOne} />
             <img id="bp" src={ExampleBlueprint} alt="blueprint" style={{ display: "none" }} />
          </div>
       </Paper>
