@@ -105,19 +105,26 @@ const BlueprintCanvas = (props) => {
                Pick and place the sensor on its location
             </Typography>
             <Box>
-               <Button className={classes.editBtn}>
+               <Button component="label" className={classes.editBtn}>
                   Edit Blueprint
+                  <input
+                     type="file"
+                     title="New Blueprint"
+                     id="imageLoader"
+                     name="imageLoader"
+                     onChange={handleImage}
+                     hidden
+                  />
                </Button>
                <Button className={classes.saveBtn}>
                   Save Changes
                </Button>
             </Box>
          </Box>
-         <Box className={classes.canvas}>
-            <canvas id="board" display="block" ref={canvasRef} width="0px" height="0px" onClick={drawOne} />
+         <div>
+            <canvas id="board" display="block" ref={canvasRef} width="800px" height="700px" onClick={drawOne} />
             <img id="bp" src={ExampleBlueprint} alt="blueprint" style={{ display: "none" }} />
-            <input type="file" title="New Blueprint" id="imageLoader" name="imageLoader" onChange={handleImage} />
-         </Box>
+         </div>
       </Paper>
    );
 }

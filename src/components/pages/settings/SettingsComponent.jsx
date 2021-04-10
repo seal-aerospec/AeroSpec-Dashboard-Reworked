@@ -13,6 +13,14 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '16px',
       color: '#707070',
       textTransform: 'none',
+   },
+   selectedBtn: {
+      backgroundColor: '#3e6eb0',
+      color: 'white',
+      padding: '12px 36px',
+      borderRadius: '10em',
+      fontSize: '16px',
+      textTransform: 'none',
    }
 }));
 
@@ -27,7 +35,7 @@ const StyledToggleButtonGroup = withStyles((theme) => ({
        borderRadius: '10em',
      },
    },
- }))(ToggleButtonGroup);
+ })) (ToggleButtonGroup);
 
 const SettingComponent = () => {
    const classes = useStyles();
