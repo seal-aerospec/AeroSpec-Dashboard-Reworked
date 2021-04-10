@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
    cardContainer: {
       margin: theme.spacing(1),
       padding: '1vw',
+      backgroundColor: '#f8fcff',
    },
    header: {
       display: 'flex',

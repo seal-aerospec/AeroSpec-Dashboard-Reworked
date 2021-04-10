@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
+      marginBottom: '1vh',
    },
    activeButton: {
       height: 25,
@@ -113,7 +114,7 @@ const BlueprintCanvas = (props) => {
             </Box>
          </Box>
          <Box className={classes.canvas}>
-            <canvas id="board" display="block" ref={canvasRef} onClick={drawOne} />
+            <canvas id="board" display="block" ref={canvasRef} width="0px" height="0px" onClick={drawOne} />
             <img id="bp" src={ExampleBlueprint} alt="blueprint" style={{ display: "none" }} />
             <input type="file" title="New Blueprint" id="imageLoader" name="imageLoader" onChange={handleImage} />
          </Box>
