@@ -39,7 +39,6 @@ const marks = () => {
          label: label
       })
    }
-   console.log(marks);
    return marks;
 }
 

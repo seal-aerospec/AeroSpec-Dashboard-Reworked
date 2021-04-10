@@ -12,15 +12,15 @@ const useStyles = makeStyles({
    alertCards: {
       marginTop: '3vh'
    },
-   alertHeader: {
+   alertContent: {
       display: 'flex',
+      flex: 1,
       flexDirection: 'column',
-      justifyContent: 'space-around',
+      justifyContent: 'space-between',
    },
    bellIcon: {
       height: '30%',
       width: 'auto',
-      margin: '5vh'
    },
    cardContent: {
       height: '30vh',
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
       flexDirection: 'row',
       alignItems: 'flex-start',
       overflow: 'hidden',
-      padding: '5vh',
+      padding: '3vh',
     },
    exampleMinView: {
       flexShrink: 0,
@@ -43,22 +43,20 @@ const Alert = () => {
    return (
       <Card className={classes.alertCards}>
          <CardContent className={classes.cardContent}>
-            <div>
-               <Box className={classes.alertHeader}>
-                  <Box display="flex" flexDirection="row">
-                     <IconButton>
-                        <BellIcon />
-                     </IconButton>
-                     <div>
-                        <Typography variant="subtitle1">(MMMM DD, YYYY)</Typography>
-                        <Typography variant="h5">Machine Learning Suggestion</Typography>
-                     </div>
-                  </Box>
-                  <div>
-                     <Typography>Sensor message</Typography>
-                  </div>
+            <Box marginRight="1vw">
+               <IconButton className={classes.bellIcon}>
+                  <BellIcon />
+               </IconButton>
+            </Box>
+            <Box className={classes.alertContent}>
+               <Box marginBottom="5vh">
+                  <Typography variant="subtitle1">(MMMM DD, YYYY)</Typography>
+                  <Typography variant="h5">Machine Learning Suggestion</Typography>
                </Box>
-            </div>
+               <Box>
+                  <Typography>Sensor message</Typography>
+               </Box>
+            </Box>
             <img src={ExampleAlert} className={classes.exampleMinView} alt="Device with Alert"></img>
          </CardContent>
       </Card>
