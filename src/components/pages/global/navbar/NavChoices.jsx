@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
    drawerText: {
       color: 'white',
-   }
+   },
 }));
 
 const NavChoices = (props) => {
