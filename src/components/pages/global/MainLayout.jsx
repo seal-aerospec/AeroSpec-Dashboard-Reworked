@@ -47,6 +47,7 @@ const MainLayout = (props) => {
                <NavBar
                   menuOpen={menuOpen}
                   setMenuOpen={setMenuOpen}
+                  choice={props.choice}
                />
             </Box>
          </Box>
