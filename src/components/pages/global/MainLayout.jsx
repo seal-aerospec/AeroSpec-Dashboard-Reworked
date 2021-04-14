@@ -6,6 +6,7 @@ import TopBar from '../global/topbar/TopBar';
 
 import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
+// import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
    layoutContainer: {
@@ -64,7 +65,26 @@ const MainLayout = (props) => {
             {props.content}
          </Box>
       </Box>
-    );
+      // <Grid container spacing={1} className={classes.layoutContainer}>
+      //    <Grid item md={2}>
+      //       <NavBar
+      //          menuOpen={menuOpen}
+      //          setMenuOpen={setMenuOpen}
+      //       />
+      //    </Grid>
+      //    <Grid item container md={menuOpen ? 10 : 12} direction="column">
+      //       <Grid item md={12}>
+      //          <TopBar
+      //             menuOpen={menuOpen}
+      //             setMenuOpen={setMenuOpen}
+      //          />
+      //       </Grid>
+      //       <Grid md={12}>
+      //          {props.content}
+      //       </Grid>
+      //    </Grid>
+      // </Grid>
+   );
 }
 
 export default MainLayout;
