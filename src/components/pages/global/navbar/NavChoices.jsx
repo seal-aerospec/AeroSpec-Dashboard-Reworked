@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { makeStyles } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -11,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
          color: 'rgba(255, 255, 255, 1)',
          backgroundColor: '#3E6EB0',
       },
+   },
+   icon: {
+      opacity: '0.5',
+   },
+   selectedIcon: {
+      opacity: '1',
    },
 }));
 
@@ -26,7 +34,10 @@ const NavChoices = (props) => {
          onClick={() => props.handleListItemClick(props.choice)}
          className={classes.item}
       >
-         <ListItemIcon>
+         <ListItemIcon
+            className={clsx(classes.icon, {
+            [classes.selectedIcon]: props.selectedChoice === props.choice,
+         })}>
             {props.icon}
          </ListItemIcon>
          <ListItemText primary={props.label} />
