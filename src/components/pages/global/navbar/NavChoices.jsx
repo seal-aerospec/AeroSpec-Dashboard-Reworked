@@ -1,10 +1,13 @@
 import clsx from 'clsx';
 
 import { makeStyles } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
+
+import ActiveTabIcon from '../../../../assets/UI_component_svg/ActiveTabIcon';
 
 const useStyles = makeStyles((theme) => ({
    item: {
@@ -19,6 +22,12 @@ const useStyles = makeStyles((theme) => ({
    },
    selectedIcon: {
       opacity: '1',
+   },
+   inactive: {
+      visibility: 'hidden',
+   },
+   active: {
+     visibility: 'visible',
    },
 }));
 
@@ -35,12 +44,22 @@ const NavChoices = (props) => {
          className={classes.item}
       >
          <ListItemIcon
-            className={clsx(classes.icon, {
-            [classes.selectedIcon]: props.selectedChoice === props.choice,
-         })}>
-            {props.icon}
+            className={clsx(classes.inactive, {
+               [classes.active]: props.selectedChoice === props.choice,
+            })}
+         >
+            <ActiveTabIcon />
          </ListItemIcon>
-         <ListItemText primary={props.label} />
+         <Box display="flex" flexDirection="column">
+            <ListItemIcon
+               className={clsx(classes.icon, {
+                  [classes.selectedIcon]: props.selectedChoice === props.choice,
+               })}
+            >
+               {props.icon}
+            </ListItemIcon>
+            <ListItemText primary={props.label} />
+         </Box>
       </ListItem>
    );
 }
