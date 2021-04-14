@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
-import BinIcon from '../../../assets/UI_component_svg/BinIcon';
+import BinIcon from '../../../../assets/UI_component_svg/BinIcon';
 
 const useStyles = makeStyles((theme) => ({
    cardContainer: {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import BlueprintCanvas from './BlueprintCanvas';
-import DeviceList from './DeviceList';
+import BlueprintCanvas from './blueprint-display/BlueprintCanvas';
+import DeviceList from './device-display/DeviceList';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';

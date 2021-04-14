@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-import DeviceIcon from '../../../assets/UI_component/source 2.png';
-import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
+import DeviceIcon from '../../../../assets/UI_component/source 2.png';
+import ExampleBlueprint from '../../../../assets/uploaded_blueprints/example.jpg';
 import EditBlueprintButton from './EditBlueprintButton';
 
 const useStyles = makeStyles((theme) => ({
