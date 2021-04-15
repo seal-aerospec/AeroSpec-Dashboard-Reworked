@@ -6,18 +6,19 @@ import TopBar from '../global/topbar/TopBar';
 
 import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
+// import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
    layoutContainer: {
       backgroundColor: '#f8fcff',
    },
    componentContainer: {
-      height: '200vh',
+      height: '100%',
       width: '100vw',
       position: "relative"
    },
    componentContainerShift: {
-      height: '200vh',
+      height: '100%',
       width: '84.5vw',
       marginLeft: '0.5vw',
       position: "relative"
@@ -46,6 +47,7 @@ const MainLayout = (props) => {
                <NavBar
                   menuOpen={menuOpen}
                   setMenuOpen={setMenuOpen}
+                  choice={props.choice}
                />
             </Box>
          </Box>
@@ -61,12 +63,29 @@ const MainLayout = (props) => {
                   setMenuOpen={setMenuOpen}
                />
             </Box>
-            <Box component="span">
-               {props.content}
-            </Box>
+            {props.content}
          </Box>
       </Box>
-    );
+      // <Grid container spacing={1} className={classes.layoutContainer}>
+      //    <Grid item md={2}>
+      //       <NavBar
+      //          menuOpen={menuOpen}
+      //          setMenuOpen={setMenuOpen}
+      //       />
+      //    </Grid>
+      //    <Grid item container md={menuOpen ? 10 : 12} direction="column">
+      //       <Grid item md={12}>
+      //          <TopBar
+      //             menuOpen={menuOpen}
+      //             setMenuOpen={setMenuOpen}
+      //          />
+      //       </Grid>
+      //       <Grid md={12}>
+      //          {props.content}
+      //       </Grid>
+      //    </Grid>
+      // </Grid>
+   );
 }
 
 export default MainLayout;

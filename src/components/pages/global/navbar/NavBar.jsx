@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import NavChoices from './NavChoices';
 import NavDivider from './NavDivider';
 
@@ -26,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
       backgroundColor: 'white',
+      marginBottom: theme.spacing(1),
     },
     drawerHeaderImg: {
       display: 'block',
@@ -36,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = (props) => {
    const classes = useStyles();
+   const [selectedChoice, setSelectedChoice] = useState(props.choice);
+
+   const handleListItemClick = (choice) => {
+      setSelectedChoice(choice);
+    };
+
    return (
       <Drawer
          variant="persistent"
@@ -51,24 +60,36 @@ const NavBar = (props) => {
                icon={<HomeIcon />}
                label="Home"
                link="/"
+               choice={0}
+               selectedChoice={selectedChoice}
+               handleListItemClick={handleListItemClick}
             />
             <NavDivider />
             <NavChoices
                icon={<AlertIcon />}
                label="Alerts"
                link="/alerts"
+               choice={1}
+               selectedChoice={selectedChoice}
+               handleListItemClick={handleListItemClick}
             />
             <NavDivider />
             <NavChoices
                icon={<BlueprintDeviceIcon />}
                label="Blueprints & Devices"
                link="/blueprints-and-devices"
+               choice={2}
+               selectedChoice={selectedChoice}
+               handleListItemClick={handleListItemClick}
             />
             <NavDivider />
             <NavChoices
                icon={<SettingsIcon />}
                label="Settings"
                link="/settings"
+               choice={3}
+               selectedChoice={selectedChoice}
+               handleListItemClick={handleListItemClick}
             />
          </List>
       </Drawer>
