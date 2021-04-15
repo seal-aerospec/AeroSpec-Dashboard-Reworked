@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme) => ({
       textTransform: 'none',
       borderStyle: 'solid',
       borderWidth: '1px',
+   },
+   text: {
+      color: '#2E4765',
+      opacity: '56%',
    }
 }));
 
@@ -92,11 +96,11 @@ const BlueprintCanvas = (props) => {
 
    return (
       <Paper style={{ padding: "5vh" }}>
-         <Box display="flex" className={classes.blueprintHeader}>
-            <Typography variant="body1">
+         <Box display="flex" flexWrap="wrap" className={classes.blueprintHeader}>
+            <Typography variant="body1" className={classes.text}>
                Pick and place the sensor on its location
             </Typography>
-            <Box display="flex" justifyContent="center">
+            <Box display="flex" justifyContent="center" flexWrap="wrap">
                <EditBlueprintButton
                   modalOpen={modalOpen}
                   setModalOpen={setModalOpen}

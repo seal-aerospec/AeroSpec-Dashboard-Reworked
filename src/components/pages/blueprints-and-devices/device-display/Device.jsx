@@ -23,6 +23,13 @@ const useStyles = makeStyles((theme) => ({
       color: '#ffffff',
       borderRadius: 20,
       height: '3vh',
+   },
+   text: {
+      color: '#2E4765',
+   },
+   textSubtitle: {
+      color: '#2E4765',
+      opacity: '55%',
    }
 }));
 
@@ -30,8 +37,10 @@ const Device = (props) => {
    const classes = useStyles();
    return (
       <Card className={classes.cardContainer}>
-         <Typography variant="overline">Device Name</Typography>
-         <Box className={classes.header}>
+         <Typography variant="overline" className={classes.textSubtitle}>
+            Device Name
+         </Typography>
+         <Box className={`${classes.header} ${classes.text}`}>
             <Typography variant="h5">AeroSpec 9</Typography>
             <Box>
                <IconButton>

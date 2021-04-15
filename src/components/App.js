@@ -22,7 +22,7 @@ const romanTheme = createMuiTheme({
         'Montserrat',
         'sans-serif',
       ].join(','),
-      fontWeightRegular: 400,
+      fontWeightRegular: 500,
       fontWeightBold: 700,
     },
 })

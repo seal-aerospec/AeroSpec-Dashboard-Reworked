@@ -15,7 +15,12 @@ const useStyles = makeStyles((theme) => ({
    header: {
       display: 'flex',
       margin: theme.spacing(1),
-      justifyContent: "space-between"
+      justifyContent: 'space-between',
+      flexWrap: 'wrap',
+   },
+   text: {
+      color: '#2E4765',
+      opacity: '55%',
    }
 }));
 
@@ -25,7 +30,7 @@ const DeviceList = () => {
       <Paper variant="outlined" square className={classes.listContainer}>
          <Box className={classes.header}>
             <Typography display="inline" variant="h5">My Devices</Typography>
-            <Button>Add +</Button>
+            <Button className={classes.text}>Add +</Button>
          </Box>
          <Box>
             <Device />

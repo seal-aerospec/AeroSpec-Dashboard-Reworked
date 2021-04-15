@@ -11,6 +11,8 @@ import ActiveTabIcon from '../../../../assets/UI_component_svg/ActiveTabIcon';
 
 const useStyles = makeStyles((theme) => ({
    item: {
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
       paddingLeft: '0px',
       color: 'rgba(255, 255, 255, 0.5)',
       "&.Mui-selected": {

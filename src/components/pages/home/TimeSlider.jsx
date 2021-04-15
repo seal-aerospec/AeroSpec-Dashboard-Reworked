@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) => ({
    margin: {
       height: theme.spacing(3),
    },
+   text: {
+      color: 'black',
+      opacity: '50%',
+      textAlign: 'center',
+   },
 }));
 
 const marks = () => {
@@ -46,7 +51,11 @@ const TimeSlider = () => {
    const classes = useStyles();
    return (
       <div className={classes.root}>
-         <Typography id="track-false-range-slider" gutterBottom style={{ textAlign: 'center' }}>
+         <Typography
+            id="track-false-range-slider"
+            gutterBottom
+            className={classes.text}
+         >
             Scroll to view sensor status throughout the day
          </Typography>
          <Slider

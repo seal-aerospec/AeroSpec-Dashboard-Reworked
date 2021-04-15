@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
       backgroundColor: 'white',
+      marginBottom: theme.spacing(1),
     },
     drawerHeaderImg: {
       display: 'block',
