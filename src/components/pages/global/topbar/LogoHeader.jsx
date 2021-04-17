@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
       position: 'fixed',
       width: '15vw',
-      height: '8vh',
+      height: '9vh',
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
       backgroundColor: 'white',
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const LogoHeader = (props) => {
    const classes = useStyles();
    return (
-      <Box boxShadow={2} className={classes.drawerHeader}>
+      <Box boxShadow={1} className={classes.drawerHeader}>
          <img src={navbarLogo} alt="AeroSpec Logo" className={classes.drawerHeaderImg} />
          <IconButton
             edge="start"

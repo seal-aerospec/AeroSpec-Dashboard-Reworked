@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       backgroundColor: 'white',
       position: 'relative',
-      height: '8vh',
+      height: '9vh',
     },
     toolbar: {
       display: 'flex',
@@ -29,7 +29,7 @@ const TopBar = () => {
 
    return (
       <AppBar
-         elevation={2}
+         elevation={1}
          className={classes.appBar}
       >
          <Toolbar className={classes.toolbar}>
