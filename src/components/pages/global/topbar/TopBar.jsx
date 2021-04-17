@@ -10,6 +10,8 @@ import NotificationIcon from '../../../../assets/UI_component_svg/NotificationIc
 
 import SuggestionButton from '../SuggestionButton';
 
+import { Link } from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
    appBar: {
       backgroundColor: 'white',
@@ -43,8 +45,9 @@ const TopBar = (props) => {
                </IconButton>
 
                <IconButton
+                  component={Link}
+                  to={"/alerts"}
                   edge="start"
-                  href="alerts"
                >
                   <NotificationIcon />
                </IconButton>
