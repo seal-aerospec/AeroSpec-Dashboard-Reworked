@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import NotificationIcon from '../../../../assets/UI_component_svg/NotificationIcon';
-import SuggestionButton from '../SuggestionButton';
+import SuggestionButton from './SuggestionButton';
 
 const useStyles = makeStyles((theme) => ({
    appBar: {
