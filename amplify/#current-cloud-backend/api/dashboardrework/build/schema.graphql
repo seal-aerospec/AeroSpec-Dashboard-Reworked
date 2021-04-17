@@ -1,0 +1,153 @@
+type SensorData {
+  id: ID!
+  testDataX: [Float]!
+  testDataY: [Int]!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelSensorDataConnection {
+  items: [SensorData]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelSensorDataFilterInput {
+  id: ModelIDInput
+  testDataX: ModelFloatInput
+  testDataY: ModelIntInput
+  and: [ModelSensorDataFilterInput]
+  or: [ModelSensorDataFilterInput]
+  not: ModelSensorDataFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getSensorData(id: ID!): SensorData
+  listSensorDatas(filter: ModelSensorDataFilterInput, limit: Int, nextToken: String): ModelSensorDataConnection
+}
+
+input CreateSensorDataInput {
+  id: ID
+  testDataX: [Float]!
+  testDataY: [Int]!
+}
+
+input UpdateSensorDataInput {
+  id: ID!
+  testDataX: [Float]
+  testDataY: [Int]
+}
+
+input DeleteSensorDataInput {
+  id: ID
+}
+
+type Mutation {
+  createSensorData(input: CreateSensorDataInput!, condition: ModelSensorDataConditionInput): SensorData
+  updateSensorData(input: UpdateSensorDataInput!, condition: ModelSensorDataConditionInput): SensorData
+  deleteSensorData(input: DeleteSensorDataInput!, condition: ModelSensorDataConditionInput): SensorData
+}
+
+input ModelSensorDataConditionInput {
+  testDataX: ModelFloatInput
+  testDataY: ModelIntInput
+  and: [ModelSensorDataConditionInput]
+  or: [ModelSensorDataConditionInput]
+  not: ModelSensorDataConditionInput
+}
+
+type Subscription {
+  onCreateSensorData: SensorData @aws_subscribe(mutations: ["createSensorData"])
+  onUpdateSensorData: SensorData @aws_subscribe(mutations: ["updateSensorData"])
+  onDeleteSensorData: SensorData @aws_subscribe(mutations: ["deleteSensorData"])
+}

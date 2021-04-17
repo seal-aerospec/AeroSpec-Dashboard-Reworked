@@ -1,0 +1,62 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-dashboardrework-dev-13711-authRole",
+      "UnauthRoleArn": "arn:aws:iam::790784664340:role/amplify-dashboardrework-dev-13711-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::790784664340:role/amplify-dashboardrework-dev-13711-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-dashboardrework-dev-13711-deployment",
+      "UnauthRoleName": "amplify-dashboardrework-dev-13711-unauthRole",
+      "StackName": "amplify-dashboardrework-dev-13711",
+      "StackId": "arn:aws:cloudformation:us-west-2:790784664340:stack/amplify-dashboardrework-dev-13711/73e3f430-977c-11eb-9de2-0a0cccf9a5fd",
+      "AmplifyAppId": "d2xqu5rq1ol60j"
+    }
+  },
+  "api": {
+    "dashboardrework": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 365,
+              "description": "GraphQLKey"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "faq66reifbf3xdlx3xvpu6br4u",
+        "GraphQLAPIEndpointOutput": "https://ibtkbn3jvzfe3phrzgaif6uzdm.appsync-api.us-west-2.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-of6cxzbbrzarflfkn7iu4wz4u4"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-dashboardrework-dev-13711-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apidashboardrework"
+      },
+      "lastPushTimeStamp": "2021-04-10T10:13:14.574Z",
+      "lastPushDirHash": "MLQjloRRekMwnpMyRtD4/5g/3IQ="
+    }
+  },
+  "storage": {
+    "dashboardReworkData": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-dashboardrework-dev-13711-deployment/amplify-cfn-templates/storage/dashboardReworkData-cloudformation-template.json",
+        "logicalId": "storagedashboardReworkData"
+      },
+      "lastPushTimeStamp": "2021-04-10T10:13:14.574Z",
+      "output": {
+        "PartitionKeyName": "testColumn",
+        "Region": "us-west-2",
+        "Arn": "arn:aws:dynamodb:us-west-2:790784664340:table/dashboardReworkData-dev",
+        "StreamArn": "arn:aws:dynamodb:us-west-2:790784664340:table/dashboardReworkData-dev/stream/2021-04-10T10:10:20.085",
+        "PartitionKeyType": "S",
+        "Name": "dashboardReworkData-dev"
+      },
+      "lastPushDirHash": "6mZoCTgXvZQgIJJONyMwaRs+sCQ="
+    }
+  }
+}

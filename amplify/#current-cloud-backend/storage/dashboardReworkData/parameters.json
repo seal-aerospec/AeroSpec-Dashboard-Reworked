@@ -1,0 +1,5 @@
+{
+    "tableName": "dashboardReworkData",
+    "partitionKeyName": "testColumn",
+    "partitionKeyType": "S"
+}

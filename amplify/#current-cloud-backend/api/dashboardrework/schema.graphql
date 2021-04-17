@@ -1,0 +1,5 @@
+type SensorData @model {
+   id: ID!
+   testDataX: [Float]!
+   testDataY: [Int]!
+}

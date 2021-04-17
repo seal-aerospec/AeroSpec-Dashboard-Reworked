@@ -1,0 +1,8 @@
+{
+    "CreateAPIKey": 1,
+    "AppSyncApiName": "dashboardrework",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-dashboardrework-dev-13711-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/1736b8af4ffc8e7637277452906e35ee02f4fe04"
+}
