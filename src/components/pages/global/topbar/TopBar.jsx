@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core';
@@ -5,15 +6,16 @@ import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 
-import MenuIcon from '../../../../assets/UI_component_svg/MenuIcon';
 import NotificationIcon from '../../../../assets/UI_component_svg/NotificationIcon';
-
 import SuggestionButton from '../SuggestionButton';
 
 const useStyles = makeStyles((theme) => ({
    appBar: {
+      display: 'flex',
+      justifyContent: 'center',
       backgroundColor: 'white',
       position: 'relative',
+      height: '8vh',
     },
     toolbar: {
       display: 'flex',
@@ -21,30 +23,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const TopBar = (props) => {
+const TopBar = () => {
    const [modalOpen, setModalOpen] = useState(false);
    const classes = useStyles();
 
    return (
       <AppBar
-         elevation={3}
+         elevation={2}
          className={classes.appBar}
       >
          <Toolbar className={classes.toolbar}>
             <div>
                <IconButton
-                  edge="start"
-                  color="relative"
-                  aria-label="menu"
-                  onClick={props.menuOpen ?
-                     () => props.setMenuOpen(false) : () => props.setMenuOpen(true)}
-               >
-                  <MenuIcon />
-               </IconButton>
-
-               <IconButton
-                  edge="start"
-                  href="alerts"
+                  component={Link}
+                  to={"/alerts"}
                >
                   <NotificationIcon />
                </IconButton>
