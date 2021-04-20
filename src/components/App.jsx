@@ -8,7 +8,7 @@ import Settings from './pages/settings/Settings';
 
 import '../styles/App.css';
 
-const romanTheme = createMuiTheme({
+const defaultTheme = createMuiTheme({
    palette: {
       primary: {
          main: '#3E6EB0'
@@ -29,7 +29,7 @@ const romanTheme = createMuiTheme({
 
 function App() {
   return (
-   <ThemeProvider theme={romanTheme}>
+   <ThemeProvider theme={defaultTheme}>
    <Router>
    <Switch>
 

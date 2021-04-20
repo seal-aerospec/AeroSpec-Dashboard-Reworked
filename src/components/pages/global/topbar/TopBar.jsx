@@ -9,6 +9,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import NotificationIcon from '../../../../assets/UI_component_svg/NotificationIcon';
 import SuggestionButton from './SuggestionButton';
 
+import { Link } from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
    appBar: {
       display: 'flex',
@@ -37,6 +39,7 @@ const TopBar = () => {
                <IconButton
                   component={Link}
                   to={"/alerts"}
+                  edge="start"
                >
                   <NotificationIcon />
                </IconButton>
