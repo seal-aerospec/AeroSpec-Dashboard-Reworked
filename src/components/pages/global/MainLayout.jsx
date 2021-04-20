@@ -5,7 +5,6 @@ import NavBar from '../global/navbar/NavBar';
 import TopBar from '../global/topbar/TopBar';
 import LogoHeader from '../global/topbar/LogoHeader';
 
-import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,17 +19,6 @@ const useStyles = makeStyles((theme) => ({
    },
    navBar: {
       position: 'fixed',
-   },
-   contentContainer: {
-      flexGrow: 1,
-      height: '100vh',
-      width: '100vw',
-      position: 'relative',
-      marginLeft: 0,
-      transition: theme.transitions.create('margin', {
-         easing: theme.transitions.easing.sharp,
-         duration: theme.transitions.duration.leavingScreen,
-      }),
    },
    contentContainerShift: {
       height: '100vh',
@@ -72,10 +60,7 @@ const MainLayout = (props) => {
                   choice={props.choice}
                />
             </Box>
-            <Box
-               className={clsx(classes.contentContainer, {
-                  [classes.contentContainerShift]: menuOpen,
-               })}>
+            <Box className={classes.contentContainerShift}>
                {props.content}
             </Box>
          </Box>
