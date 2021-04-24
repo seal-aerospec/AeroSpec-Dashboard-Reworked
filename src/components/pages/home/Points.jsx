@@ -1,10 +1,14 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 
 
-const Points = ({onPress}) => (
-    <TouchableOpacity onPress={onPress} style={styles.pStyle} />
-);
+const Points = ({onPress}) => {
+    return (
+        <TouchableOpacity>
+            onPress={onPress} style={styles.pStyle}
+        </TouchableOpacity>
+    );
+}
 
 const styles = StyleSheet.create({
     pStyle: {
@@ -14,7 +18,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
         position: 'relative'
     }
-}
-);
+});
 
 export default Points;

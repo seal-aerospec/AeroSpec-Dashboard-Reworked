@@ -66,6 +66,6 @@ const HomeComponent = () => {
 
 //pop up a small side window that displays the info of the chosen device
 const windowOpener = () => {
-
+   console.log('Hahaha');
 }
 export default HomeComponent;
