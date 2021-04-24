@@ -1,9 +1,9 @@
 import MainLayout from '../global/MainLayout';
-import HomeComponent from './HomeComponent';
+import HomeLayout from './HomeLayout';
 
 const Home = () => {
    return (
-      <MainLayout content={<HomeComponent />} choice={0} />
+      <MainLayout content={<HomeLayout />} choice={0}/>
     );
 }
 
