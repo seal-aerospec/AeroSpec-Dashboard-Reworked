@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
 import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
-import Points from 'Points';
+import Points from './Points';
 
 const useStyles = makeStyles((theme) => ({
    homeContainer: {
@@ -53,10 +53,19 @@ const HomeComponent = () => {
          </Box>
          <Box className={classes.blueprintContainer}>
             <TimeSlider />
-            
+            <img src={ExampleBlueprint} alt="blueprint">
+               <Points onPress={this.windowOpener}/>
+            </img>
          </Box>
       </Box>
    );
 }
 //This is originally under <TimeSlider>: <img src={ExampleBlueprint} alt="blueprint" />
+//Q1: how to put a point properly on the floorplan img
+//Q2: how to do a pop up side window
+
+//pop up a small side window that displays the info of the chosen device
+const windowOpener = () => {
+
+}
 export default HomeComponent;
