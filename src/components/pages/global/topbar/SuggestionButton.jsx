@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import SuggestionIcon from '../../../assets/UI_component_svg/SuggestionIcon';
+import SuggestionIcon from '../../../../assets/UI_component_svg/SuggestionIcon';
 
 const useStyles = makeStyles((theme) => ({
   suggestionButton: {
