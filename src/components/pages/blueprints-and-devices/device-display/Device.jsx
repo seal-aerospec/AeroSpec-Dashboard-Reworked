@@ -6,6 +6,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
 import BinIcon from '../../../../assets/UI_component_svg/BinIcon';
+import React from 'react';
+import CardContent from '@material-ui/core/CardContent';
+import Collapse from '@material-ui/core/Collapse';
 
 const useStyles = makeStyles((theme) => ({
    cardContainer: {
@@ -33,31 +36,57 @@ const useStyles = makeStyles((theme) => ({
    }
 }));
 
+
+
 const Device = (props) => {
    const classes = useStyles();
-   return (
-      <Card className={classes.cardContainer}>
-         <Typography variant="overline" className={classes.textSubtitle}>
-            Device Name
-         </Typography>
-         <Box className={`${classes.header} ${classes.text}`}>
-            <Typography variant="h5">AeroSpec 9</Typography>
-            <Box>
-               <IconButton>
-                  <BinIcon />
-               </IconButton>
-               <Button className={classes.activeBtn}>
-                  Active
-               </Button>
+
+   const [expanded, setExpanded] = React.useState(false);
+   const [outlined, setOutlined] = React.useState(null);
+   const [removed, setRemove] = React.useState(false);
+
+   const handleExpand = () => {
+     setExpanded(!expanded);
+     if (outlined === "outlined") {
+        setOutlined(null)
+     } else {
+        setOutlined("outlined")
+     }
+   };
+
+   const removeCard = () => {
+      setRemove(true);
+   }
+   
+   if (removed) {
+      return false;
+   } else {
+      return (
+         <Card onClick={handleExpand} className={classes.cardContainer}  variant={outlined}>
+            <Typography variant="overline" className={classes.textSubtitle}>
+               Device Name
+            </Typography>
+            <Box className={`${classes.header} ${classes.text}`}>
+               <Typography variant="h5">AeroSpec 9</Typography>
+               <Box>
+                  <IconButton onClick={removeCard}>
+                     <BinIcon/>
+                  </IconButton>
+                  <Button className={classes.activeBtn} >
+                     Active
+                  </Button>
+               </Box>
             </Box>
-         </Box>
-         <Box>
-            <Typography variant="body2">Serial Number: {props.serialNumber}</Typography>
-            <Typography variant="body2">Battery: {props.battery}</Typography>
-            <Typography variant="body2">Wifi Strength: {props.wifiStrength}</Typography>
-         </Box>
-      </Card>
-   );
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+               <Typography variant="body2">Serial Number: {props.serialNumber}</Typography>
+               <Typography variant="body2">Battery: {props.battery}</Typography>
+               <Typography variant="body2">Wifi Strength: {props.wifiStrength}</Typography>
+            </CardContent>
+            </Collapse>
+         </Card>
+      );
+   }
 }
 
 export default Device;
