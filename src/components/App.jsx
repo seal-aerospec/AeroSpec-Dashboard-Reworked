@@ -32,7 +32,12 @@ function App() {
    <ThemeProvider theme={defaultTheme}>
    <Router>
    <Switch>
-      <Route path={["/","/home"]}>
+
+      <Route exact path="/">
+         <Home />
+      </Route>
+
+      <Route path="/home">
          <Home />
       </Route>
 
