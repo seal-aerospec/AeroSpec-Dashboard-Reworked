@@ -1,5 +1,6 @@
 import MainContent from './MainContent';
 import CategoryButtons from './category-btns/CategoryButtons';
+import DeviceDetailContent from './DeviceDetailsContent';
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 
 
@@ -26,8 +27,11 @@ const HomeLayout = () => {
             <Route exact path={["/",truePath]}>
                <MainContent default/>
             </Route>
-            <Route path={`${truePath}/:cateId`}>
+            <Route path={`${truePath}/main/:cateId`}>
                <MainContent />
+            </Route>
+            <Route path={`${truePath}/device-details/:deviceId`}>
+               <DeviceDetailContent />
             </Route>
          </Switch>
       </Box>

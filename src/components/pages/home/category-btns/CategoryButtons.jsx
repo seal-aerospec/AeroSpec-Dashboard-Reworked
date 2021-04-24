@@ -29,15 +29,14 @@ const CategoryButtons = () => {
     {short:"hmd", long: "Humidity"},
     {short:"temp", long: "Temperature"},
     {short:"env-pm", long: "Environment Particles"},
-    {short:"device-details", long: "Device Details"}
   ];
+  const trueUrl = (url === "/") ? "/home": url;
   const cateComponent = category.map((obj) => {
-    const trueUrl = (url === "/") ? "/home": url;
     return (
       <Button
         className={classes.graphBtn}
         component={Link}
-        to={`${trueUrl}/${obj.short}`}>
+        to={`${trueUrl}/main/${obj.short}`}>
         {obj.long}
       </Button>
     );
@@ -45,6 +44,12 @@ const CategoryButtons = () => {
   return (
     <Box>
        {cateComponent}
+       <Button
+        className={classes.graphBtn}
+        component={Link}
+        to={`${trueUrl}/device-details/1`}>
+        Device Details
+      </Button>
     </Box>
   );
 }
