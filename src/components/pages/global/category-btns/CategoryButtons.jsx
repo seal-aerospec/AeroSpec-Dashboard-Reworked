@@ -1,7 +1,6 @@
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-import { useRouteMatch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,8 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CategoryButtons = () => {
-  let { url } = useRouteMatch();
+const CategoryButtons = (props) => {
   const classes = useStyles();
   const category = [
     {short:"pc", long:"Particle Count"},
@@ -30,13 +28,12 @@ const CategoryButtons = () => {
     {short:"temp", long: "Temperature"},
     {short:"env-pm", long: "Environment Particles"},
   ];
-  const trueUrl = (url === "/") ? "/home": url;
   const cateComponent = category.map((obj) => {
     return (
       <Button
         className={classes.graphBtn}
         component={Link}
-        to={`${trueUrl}/main/${obj.short}`}>
+        to={`${props.parentLink}/${obj.short}`}>
         {obj.long}
       </Button>
     );
@@ -47,7 +44,7 @@ const CategoryButtons = () => {
        <Button
         className={classes.graphBtn}
         component={Link}
-        to={`${trueUrl}/device-details/1`}>
+        to={`/device-details/1/co2`}>
         Device Details
       </Button>
     </Box>
