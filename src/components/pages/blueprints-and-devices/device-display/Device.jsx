@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
 import BinIcon from '../../../../assets/UI_component_svg/BinIcon';
-import React from 'react';
+import { useState } from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
 
@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
 const Device = (props) => {
    const classes = useStyles();
 
-   const [expanded, setExpanded] = React.useState(false);
-   const [outlined, setOutlined] = React.useState(null);
-   const [removed, setRemove] = React.useState(false);
+   const [expanded, setExpanded] = useState(false);
+   const [outlined, setOutlined] = useState(null);
+   const [removed, setRemove] = useState(false);
 
    const handleExpand = () => {
      setExpanded(!expanded);
@@ -62,7 +62,7 @@ const Device = (props) => {
       return false;
    } else {
       return (
-         <Card onClick={handleExpand} className={classes.cardContainer}  variant={outlined}>
+         <Card onClick={handleExpand} className={classes.cardContainer} variant={outlined}>
             <Typography variant="overline" className={classes.textSubtitle}>
                Device Name
             </Typography>
