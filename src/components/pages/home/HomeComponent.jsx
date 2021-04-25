@@ -57,8 +57,9 @@ const HomeComponent = () => {
          </Box>
          <Box className={classes.blueprintContainer}>
             <TimeSlider />
-            <ImageBackground source={require('../../../assets/uploaded_blueprints/example.jpg')} style={{width: '100%', height: '100%'}} resizeMode={'cover'}>
-               <Points onPress={windowOpener}/>
+            <ImageBackground source={ExampleBlueprint} style={{flex: 1, width: 1080, height: 960}} resizeMode={'stretch'}>
+               <Points onPress={windowOpener} top={300} left={400}/>
+               <Points onPress={windowOpener} top={300} left={800}/>
             </ImageBackground>
          </Box>
       </Box>
