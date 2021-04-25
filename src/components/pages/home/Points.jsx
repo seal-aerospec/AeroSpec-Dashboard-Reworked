@@ -1,12 +1,10 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 
-const Points = ({onPress}) => {
+const Points = (props) => {
     return (
-        <TouchableOpacity>
-            onPress={onPress} style={styles.pStyle}
-        </TouchableOpacity>
+        <TouchableOpacity onPress={props.Onpress} style={styles.pStyle}></TouchableOpacity>
     );
 }
 
@@ -15,8 +13,10 @@ const styles = StyleSheet.create({
         height: 16,
         width: 16,
         borderRadius: 8,
-        backgroundColor: 'grey',
-        position: 'relative'
+        backgroundColor: 'red',
+        position: 'absolute',
+        top: 40,
+        left: 40
     }
 });
 

@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
 
 const HomeComponent = () => {
    const classes = useStyles();
+   const windowOpener = () => {
+      console.log('haha');
+   }
    return (
       <Box className={classes.homeContainer}>
          <Box>
@@ -53,9 +56,8 @@ const HomeComponent = () => {
          </Box>
          <Box className={classes.blueprintContainer}>
             <TimeSlider />
-            <img src={ExampleBlueprint} alt="blueprint">
-               <Points onPress={this.windowOpener}/>
-            </img>
+            <img src={ExampleBlueprint} alt="blueprint"></img>
+            <Points onPress={windowOpener}/>
          </Box>
       </Box>
    );
@@ -65,7 +67,5 @@ const HomeComponent = () => {
 //Q2: how to do a pop up side window
 
 //pop up a small side window that displays the info of the chosen device
-const windowOpener = () => {
-   console.log('Hahaha');
-}
+
 export default HomeComponent;
