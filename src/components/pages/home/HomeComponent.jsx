@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 
 import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
 import Points from './Points';
+import {ImageBackground} from 'react-native';
 
 const useStyles = makeStyles((theme) => ({
    homeContainer: {
@@ -56,16 +57,16 @@ const HomeComponent = () => {
          </Box>
          <Box className={classes.blueprintContainer}>
             <TimeSlider />
-            <img src={ExampleBlueprint} alt="blueprint"></img>
-            <Points onPress={windowOpener}/>
+            <ImageBackground source={require('../../../assets/uploaded_blueprints/example.jpg')} style={{width: '100%', height: '100%'}} resizeMode={'cover'}>
+               <Points onPress={windowOpener}/>
+            </ImageBackground>
          </Box>
       </Box>
    );
 }
-//This is originally under <TimeSlider>: <img src={ExampleBlueprint} alt="blueprint" />
+//This is originally under <TimeSlider>: <img src={ExampleBlueprint} alt="blueprint" /> and then <Points onPress={windowOpener}/>
 //Q1: how to put a point properly on the floorplan img
-//Q2: how to do a pop up side window
-
-//pop up a small side window that displays the info of the chosen device
-
+//failing...
+//windowOpener should open a small window on the right side of the screen that displays the info of the chosen device
+//HOW????? 
 export default HomeComponent;
