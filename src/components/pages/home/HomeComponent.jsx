@@ -57,9 +57,10 @@ const HomeComponent = () => {
          </Box>
          <Box className={classes.blueprintContainer}>
             <TimeSlider />
-            <ImageBackground source={require('../../../assets/uploaded_blueprints/example.jpg')} style={{width: '100%', height: '100%'}} resizeMode={'cover'}>
-               <Points onPress={windowOpener}/>
-            </ImageBackground>
+            <div id="new-point">
+               <Points onPress={windowOpener}></Points>
+            </div>
+            <img src={ExampleBlueprint}></img>
          </Box>
       </Box>
    );
@@ -68,5 +69,5 @@ const HomeComponent = () => {
 //Q1: how to put a point properly on the floorplan img
 //failing...
 //windowOpener should open a small window on the right side of the screen that displays the info of the chosen device
-//HOW????? 
+//HOW?????
 export default HomeComponent;

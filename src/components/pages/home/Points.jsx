@@ -3,18 +3,15 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 
 
 const Points = (props) => (
-    <TouchableOpacity onPress={props.Onpress} style={styles.pStyle}/>
+    <TouchableOpacity onPress={props.onPress} style={styles.pStyle}/>
 );
 
 const styles = StyleSheet.create({
     pStyle: {
-        height: 16,
-        width: 16,
         borderRadius: 8,
         backgroundColor: 'grey',
-        position: 'absolute',
-        top: 40,
-        left: 40
+        height: '16px',
+        width: '16px'
     }
 });
 
