@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
       color: 'black',
       opacity: '50%',
       textAlign: 'center',
+      marginBottom: 15,
    },
 }));
 
@@ -52,7 +53,7 @@ const TimeSlider = () => {
    return (
       <div className={classes.root}>
          <Typography
-            id="track-false-range-slider"
+            id="slider-text"
             gutterBottom
             className={classes.text}
          >
@@ -63,6 +64,7 @@ const TimeSlider = () => {
             aria-labelledby="slider-time"
             step={1}
             marks={marks()}
+            track={false}
             valueLabelDisplay="off"
             min={0}
             max={23}
