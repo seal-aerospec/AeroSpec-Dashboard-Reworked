@@ -32,7 +32,6 @@ const LogoHeader = (props) => {
          <img src={navbarLogo} alt="AeroSpec Logo" className={classes.drawerHeaderImg} />
          <IconButton
             edge="start"
-            color="relative"
             aria-label="menu"
             onClick={props.menuOpen ?
                () => props.setMenuOpen(false) : () => props.setMenuOpen(true)}
