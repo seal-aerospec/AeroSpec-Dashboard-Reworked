@@ -18,6 +18,7 @@ const Themes = createMuiTheme({
      fontWeightBold: 700,
    },
    props: {
+      // disables all ripples in Material UI
       MuiButtonBase: {
         disableRipple: true,
       },
@@ -42,11 +43,22 @@ const Themes = createMuiTheme({
             color: '#C7C7C7',
          },
          thumb: {
-            color: 'primary',
             height: 40,
             width: 15,
             borderRadius: '15%',
             marginTop: -20,
+            active: {
+               boxShadow: 'none',
+            },
+            '&.Mui-focusVisible': {
+               boxShadow: 'none',
+            },
+            '&:hover': {
+               boxShadow: 'none',
+            },
+            '&::after': {
+               content: 'none',
+            },
          },
       },
    }
