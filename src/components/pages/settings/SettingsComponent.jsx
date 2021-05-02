@@ -5,10 +5,10 @@ import Box from '@material-ui/core/Box';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
-import Account from './pages/Account';
-import Contact from './pages/Contact';
-import Payment from './pages/Payment';
-import User from './pages/User';
+import Account from './sections/Account';
+import Contact from './sections/Contact';
+import Payment from './sections/Payment';
+import User from './sections/User';
 
 const useStyles = makeStyles((theme) => ({
    btn: {

@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
       color: 'black',
       opacity: '50%',
       textAlign: 'center',
+      marginBottom: 15,
    },
 }));
 
@@ -22,22 +23,22 @@ const marks = () => {
    for (let i = 0; i <= 23; i++) {
       var label = '';
       if (i === 0) {
-         label = <div><div>12</div><div class='apm'>AM</div></div>;
+         label = <div><div>12</div><div className='apm'>AM</div></div>;
       }
       if (i > 0 && i < 10) {
-         label = <div><div>{'0' + i}</div><div class='apm'>AM</div></div>;
+         label = <div><div>{'0' + i}</div><div className='apm'>AM</div></div>;
       }
       if (i >= 10 && i < 12) {
-         label = <div><div>{i}</div><div class='apm'>AM</div></div>;
+         label = <div><div>{i}</div><div className='apm'>AM</div></div>;
       }
       if (i === 12) {
-         label = <div><div>{i}</div><div class='apm'>PM</div></div>;
+         label = <div><div>{i}</div><div className='apm'>PM</div></div>;
       }
       if (i > 12 && i < 22) {
-         label = <div><div>{"0" + (i - 12)}</div><div class='apm'>PM</div></div>;
+         label = <div><div>{"0" + (i - 12)}</div><div className='apm'>PM</div></div>;
       }
       if (i >= 22) {
-         label = <div><div>{(i - 12)}</div><div class='apm'>PM</div></div>;
+         label = <div><div>{(i - 12)}</div><div className='apm'>PM</div></div>;
       }
       marks.push({
          value: i,
@@ -52,17 +53,19 @@ const TimeSlider = () => {
    return (
       <div className={classes.root}>
          <Typography
-            id="track-false-range-slider"
+            id="slider-text"
             gutterBottom
             className={classes.text}
          >
             Scroll to view sensor status throughout the day
          </Typography>
+         {/* Styling for Slider found in Themes.jsx */}
          <Slider
             defaultValue={30}
             aria-labelledby="slider-time"
             step={1}
             marks={marks()}
+            track={false}
             valueLabelDisplay="off"
             min={0}
             max={23}
