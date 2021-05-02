@@ -1,10 +1,12 @@
 import Device from './Device';
+import DeviceRegisterButton from './DeviceRegisterButton';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+
 
 const useStyles = makeStyles((theme) => ({
    listContainer: {
@@ -30,7 +32,7 @@ const DeviceList = () => {
       <Paper variant="outlined" square className={classes.listContainer}>
          <Box className={classes.header}>
             <Typography display="inline" variant="h5">My Devices</Typography>
-            <Button className={classes.text}>Add +</Button>
+            <DeviceRegisterButton />
          </Box>
          <Box>
             <Device />
