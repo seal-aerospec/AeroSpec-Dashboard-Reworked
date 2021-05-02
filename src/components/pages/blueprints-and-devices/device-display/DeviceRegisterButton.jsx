@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 const DeviceRegisterButton = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [serialN, setSerialN] = React.useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -76,14 +77,12 @@ const DeviceRegisterButton = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleSave = () => {
-    const serialField = document.getElementById("register-serial-text");
-    if (serialField.innerText === "") {
-      serialField.error = "true";
-    } else {
+    if (serialN !== "") {
       setOpen(false);
     }
-  };
+  }
   return (
     <Box>
       <Button className={classes.text} onClick={handleClickOpen}>Add +</Button>
@@ -107,6 +106,10 @@ const DeviceRegisterButton = () => {
             Please enter the device information
           </DialogContentText>
           <TextField
+            value={serialN}
+            onChange={event => setSerialN(event.target.value)}
+            error={serialN === ""}
+            helperText={serialN === "" ? 'Serial Number is Empty!' : ' '}
             id="register-serial-text"
             required
             autoFocus

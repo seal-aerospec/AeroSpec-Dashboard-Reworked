@@ -57,7 +57,7 @@ const Device = (props) => {
    const removeCard = () => {
       setRemove(true);
    }
-   
+
    if (removed) {
       return false;
    } else {
