@@ -1,9 +1,11 @@
-import { makeStyles } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
+import { makeStyles, Box, IconButton } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+
 import TimeSlider from './TimeSlider';
 
 import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
-import Points from './Points';
+import DeviceIcon from '../../../assets/UI_component/source 2.png';
+
 
 const floorPlanImg = new Image();
 floorPlanImg.src = ExampleBlueprint;
@@ -17,22 +19,31 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'white',
       padding: '2vh',
    },
-   FloorPlanCanvas: {
+   floorPlanCanvas: {
      backgroundImage: `url(${ExampleBlueprint})`,
      backgroundSize: 'contain',
      height: '70vh',
      width: '70vh'
+   },
+   points: {
+    width: '3px',
+    height: '3px',
+    backgroundImage: `url(${DeviceIcon})`,
+    backgroundSize: 'contain'
    }
 }));
-
 
 const MainContent = () => {
   const classes = useStyles();
   return (
     <Box className={classes.mainContentContainer}>
         <TimeSlider className={classes.TimeSlider}/>
-        <Box className={classes.FloorPlanCanvas}>
-          <Points></Points>
+        <Box className={classes.floorPlanCanvas}>
+        <IconButton
+        className={classes.points}
+        component={Link}
+        to={`/device-details/1/co2`}>
+        </IconButton>
         </Box>
     </Box>
   );
