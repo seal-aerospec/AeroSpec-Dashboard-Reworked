@@ -10,8 +10,9 @@ const DevicePoints = (props) => {
       height: '3px',
       backgroundImage: `url(${DeviceIcon})`,
       backgroundSize: 'contain',
-      top: props.y,
-      left: props.x
+      top: `${props.y}px`,
+      left: `${props.x}px`,
+      postion: 'relative'
     }
   }));
   const classes = useStyles();
