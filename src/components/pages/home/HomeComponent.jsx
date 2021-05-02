@@ -1,73 +1,28 @@
-import TimeSlider from './TimeSlider';
+import MainContent from './MainContent';
+import CategoryButtons from '../global/category-btns/CategoryButtons';
+
 
 import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 
-import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
-import Points from './Points';
-import {ImageBackground} from 'react-native';
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
    homeContainer: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      margin: '3vh 5vh 3vh 5vh',
-   },
-   graphBtn: {
-      backgroundColor: "white",
-      padding: '12px 24px',
-      margin: theme.spacing(1),
-      borderRadius: '10em',
-      fontSize: '16px',
-      color: '#707070',
-      textTransform: 'none',
-      borderStyle: 'solid',
-      borderWidth: '1px',
-      borderColor: '#E4EBF2',
-    },
-    blueprintContainer: {
-       display: 'flex',
-       flexDirection: 'column',
-       justifyContent: 'center',
-       alignItems: 'center',
-       backgroundColor: 'white',
-       padding: '2vh',
-    }
+      margin: '3vh 5vh 3vh 5vh'
+   }
 }));
 
-const HomeComponent = () => {
+const HomeComponent = (props) => {
    const classes = useStyles();
-   const windowOpener = () => {
-      console.log('haha');
-   }
    return (
       <Box className={classes.homeContainer}>
-         <Box>
-            <Button className={classes.graphBtn}>
-               Nano Particle
-            </Button>
-            <Button className={classes.graphBtn}>
-               Gas
-            </Button>
-            <Button className={classes.graphBtn}>
-               Temperature
-            </Button>
-         </Box>
-         <Box className={classes.blueprintContainer}>
-            <TimeSlider />
-            <ImageBackground source={ExampleBlueprint} style={{flex: 1, width: 1080, height: 960}} resizeMode={'stretch'}>
-               <Points onPress={windowOpener} top={300} left={400}/>
-               <Points onPress={windowOpener} top={300} left={800}/>
-            </ImageBackground>
-         </Box>
+         <CategoryButtons parentLink='/home'/>
+         {/* <p>{props.category} Floor Plan</p>
+         <p>Time: {props.time}</p> */}
+         <MainContent />
       </Box>
    );
 }
-//This is originally under <TimeSlider>: <img src={ExampleBlueprint} alt="blueprint" /> and then <Points onPress={windowOpener}/>
-//Q1: how to put a point properly on the floorplan img
-//failing...
-//windowOpener should open a small window on the right side of the screen that displays the info of the chosen device
-//HOW????? 
 export default HomeComponent;

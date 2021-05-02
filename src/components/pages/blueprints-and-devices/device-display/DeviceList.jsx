@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
    }
 }));
 
-const DeviceList = () => {
+const DeviceList = (props) => {
    const classes = useStyles();
    return (
       <Paper variant="outlined" square className={classes.listContainer}>
