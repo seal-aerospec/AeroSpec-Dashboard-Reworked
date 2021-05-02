@@ -18,9 +18,9 @@ const HomeComponent = (props) => {
    const classes = useStyles();
    return (
       <Box className={classes.homeContainer}>
-         <CategoryButtons parentLink='/home'/>
-         {/* <p>{props.category} Floor Plan</p>
-         <p>Time: {props.time}</p> */}
+         <CategoryButtons parentLink='/home' />
+         <p>{props.category} Floor Plan</p>
+         <p>Time: {props.time}</p>
          <MainContent />
       </Box>
    );
