@@ -1,14 +1,11 @@
-import { makeStyles, Box, IconButton } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { makeStyles, Box} from '@material-ui/core';
+
 
 import TimeSlider from './TimeSlider';
+import DevicePoints from './DevicePoints';
 
 import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
-import DeviceIcon from '../../../assets/UI_component/source 2.png';
 
-
-const floorPlanImg = new Image();
-floorPlanImg.src = ExampleBlueprint;
 
 const useStyles = makeStyles((theme) => ({
    mainContentContainer: {
@@ -24,26 +21,22 @@ const useStyles = makeStyles((theme) => ({
      backgroundSize: 'contain',
      height: '70vh',
      width: '70vh'
-   },
-   points: {
-    width: '3px',
-    height: '3px',
-    backgroundImage: `url(${DeviceIcon})`,
-    backgroundSize: 'contain'
    }
 }));
 
 const MainContent = () => {
   const classes = useStyles();
+  const deviceLocationTemp = [{deviceN:1, x:150,y:200},{deviceN:2, x:256,y:61},{deviceN:3, x:135,y:61}];
+  const devicePoints = deviceLocationTemp.map((obj) => {
+    return (
+      <DevicePoints deviceN={obj.deviceN} x={obj.x} y={obj.y}/>
+    );
+  });
   return (
     <Box className={classes.mainContentContainer}>
         <TimeSlider className={classes.TimeSlider}/>
         <Box className={classes.floorPlanCanvas}>
-        <IconButton
-        className={classes.points}
-        component={Link}
-        to={`/device-details/1/co2`}>
-        </IconButton>
+          {devicePoints}
         </Box>
     </Box>
   );
