@@ -123,9 +123,9 @@ const DeviceRegisterButton = () => {
             variant="contained"
             component="label"
             className={classes.uploadField}
+            onClick={handleClose}
           >
-            Upload Blueprint
-            <input type="file" hidden/>
+            Put Your Device On the Page
         </Button>
         <DialogActions>
           <Button onClick={handleClose} className={classes.cancelButton}>

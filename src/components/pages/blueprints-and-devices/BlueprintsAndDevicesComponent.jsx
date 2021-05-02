@@ -23,7 +23,7 @@ const BlueprintsAndDevicesComponent = () => {
    return (
       <Box display="flex" style={{width: '100%'}}>
          <Box className={classes.blueprintContainer}>
-            <BlueprintCanvas dotList={dotList} setDotList={setDotList} />
+            <BlueprintCanvas disabled="true" dotList={dotList} setDotList={setDotList} />
          </Box>
          <Box className={classes.deviceContainer}>
             <DeviceList />

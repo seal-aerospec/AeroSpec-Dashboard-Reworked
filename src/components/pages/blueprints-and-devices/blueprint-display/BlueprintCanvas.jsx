@@ -52,46 +52,52 @@ const BlueprintCanvas = (props) => {
 
    // draws placed device on blueprint
    useEffect(() => {
-      const canvas = canvasRef.current;
-      const context = canvas.getContext('2d');
-      const img = document.getElementById("bp");
-      img.onload = function () {
-         context.drawImage(img, 0, 0, "100%", "100%");
-      };
-      img.src = ExampleBlueprint;
-      var dot = new Image();
-      dot.src = DeviceIcon;
-      canvas.addEventListener("click", function (event) {
-         var x = event.offsetX - 10;
-         var y = event.offsetY - 10;
-         context.drawImage(dot, x, y, 25, 25);
-      });
+      if (props.disabled !== "true") {
+         const canvas = canvasRef.current;
+         const context = canvas.getContext('2d');
+         const img = document.getElementById("bp");
+         img.onload = function () {
+            context.drawImage(img, 0, 0, "100%", "100%");
+         };
+         img.src = ExampleBlueprint;
+         var dot = new Image();
+         dot.src = DeviceIcon;
+         canvas.addEventListener("click", function (event) {
+            var x = event.offsetX - 10;
+            var y = event.offsetY - 10;
+            context.drawImage(dot, x, y, 25, 25);
+         });
+      }
    }, []);
 
    function drawOne(event) {
-      var dot = new Image();
-      dot.src = DeviceIcon;
-      var x = event.nativeEvent.offsetX - 10;
-      var y = event.nativeEvent.offsetY - 10;
-      let each = { "x": x, "y": y };
-      list.push(each);
-      alert("A new device is placed");
-      props.setDotList(list);
+      if (props.disabled !== "true") {
+         var dot = new Image();
+         dot.src = DeviceIcon;
+         var x = event.nativeEvent.offsetX - 10;
+         var y = event.nativeEvent.offsetY - 10;
+         let each = { "x": x, "y": y };
+         list.push(each);
+         alert("A new device is placed");
+         props.setDotList(list);
+      }
    }
 
    function handleImage(e) {
-      let canvas = canvasRef.current;
-      let ctx = canvas.getContext('2d');
-      alert("New blueprint uploaded");
-      var reader = new FileReader();
-      reader.onload = function (event) {
-         var img = new Image();
-         img.onload = function () {
-            ctx.drawImage(img, 0, 0);
+      if (props.disabled !== "true") {
+         let canvas = canvasRef.current;
+         let ctx = canvas.getContext('2d');
+         alert("New blueprint uploaded");
+         var reader = new FileReader();
+         reader.onload = function (event) {
+            var img = new Image();
+            img.onload = function () {
+               ctx.drawImage(img, 0, 0);
+            }
+            img.src = event.target.result;
          }
-         img.src = event.target.result;
+         reader.readAsDataURL(e.target.files[0]);
       }
-      reader.readAsDataURL(e.target.files[0]);
    }
 
    return (
