@@ -11,8 +11,6 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(3),
    },
    text: {
-      color: 'black',
-      opacity: '50%',
       textAlign: 'center',
       marginBottom: 15,
    },
@@ -53,6 +51,7 @@ const TimeSlider = () => {
    return (
       <div className={classes.root}>
          <Typography
+            color="textSecondary"
             id="slider-text"
             gutterBottom
             className={classes.text}
