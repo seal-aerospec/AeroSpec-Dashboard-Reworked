@@ -22,7 +22,7 @@ const AlertsComponent = () => {
    };
 
    return (
-      <Box padding="3vh 10vh 3vh 10vh">
+      <Box padding="1vw 10vw 3vw 10vw">
          <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Box display="flex" justifyContent="space-around">
                <KeyboardDatePicker
@@ -70,9 +70,11 @@ const AlertsComponent = () => {
                />
             </Box>
          </MuiPickersUtilsProvider>
-         <Alert />
-         <Alert />
-         <Alert />
+         <Box>
+            <Alert />
+            <Alert />
+            <Alert />
+         </Box>
       </Box>
     );
 }
