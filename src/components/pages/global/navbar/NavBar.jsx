@@ -65,13 +65,22 @@ const NavBar = (props) => {
             />
             <NavDivider />
             <NavChoices
-               icon={<SettingsIcon />}
-               label="Settings"
-               link="/settings"
+               label="Regulatory Analysis"
+               link="/regulatory-analysis"
                choice={3}
                selectedChoice={selectedChoice}
                handleListItemClick={handleListItemClick}
             />
+            <NavDivider />
+            <NavChoices
+               icon={<SettingsIcon />}
+               label="Settings"
+               link="/settings"
+               choice={4}
+               selectedChoice={selectedChoice}
+               handleListItemClick={handleListItemClick}
+            />
+            <NavDivider />
          </List>
       </Drawer>
    );
