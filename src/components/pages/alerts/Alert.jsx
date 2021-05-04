@@ -12,28 +12,25 @@ import ExampleAlert from '../../../assets/uploaded_blueprints/alerts-floor-plan-
 const useStyles = makeStyles({
    alertCards: {
       borderRadius: '5px',
-      maxHeight: '20vh',
       width: 'auto',
       marginTop: '3vh'
    },
    cardContent: {
       display: 'flex',
-      alignItems: 'flex-start',
+      alignItems: 'center',
    },
    bellIcon: {
-      marginTop: '1vh',
+      marginTop: "1vh",
+      marginRight: "1vw",
       height: '30%',
       width: 'auto',
-   },
-   dateText: {
-      color: '#C7C7C7',
    },
    alertContent: {
       display: 'flex',
       alignSelf: 'center',
       flex: 1,
       flexDirection: 'column',
-      justifyContent: 'space-around',
+      justifyContent: 'center',
    },
    exampleMinView: {
       borderRadius: '5px',
@@ -50,7 +47,7 @@ const Alert = () => {
    return (
       <Card className={classes.alertCards}>
          <CardContent className={classes.cardContent}>
-            <Box marginRight="1vw">
+            <Box alignSelf="flex-start">
                <IconButton className={classes.bellIcon}>
                   <BellIcon2 />
                </IconButton>
@@ -59,7 +56,7 @@ const Alert = () => {
                <Box>
                   <Typography variant="subtitle2" color="textSecondary">OCTOBER 4, 2021</Typography>
                </Box>
-               <Box gutterBottom>
+               <Box marginBottom="1vh">
                   <Typography variant="h6" color="textPrimary">AS3 Reading is currently very unhealthy</Typography>
                   <Typography variant="h6" color="textPrimary" gutterBottom="true">Open window in Room 3</Typography>
                </Box>
