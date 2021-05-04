@@ -11,6 +11,7 @@ import AlertIcon from '../../../../assets/UI_component_svg/Alert2Icon';
 import BlueprintDeviceIcon from '../../../../assets/UI_component_svg/BlueprintsDevicesIcon';
 import HomeIcon from '../../../../assets/UI_component_svg/HomeIcon';
 import SettingsIcon from '../../../../assets/UI_component_svg/SettingsIcon';
+import RegulatoryAnalysisIcon from '../../../../assets/UI_component_svg/RegulatoryAnalysisIcon';
 
 const useStyles = makeStyles((theme) => ({
    drawerPaper: {
@@ -65,6 +66,7 @@ const NavBar = (props) => {
             />
             <NavDivider />
             <NavChoices
+               icon={<RegulatoryAnalysisIcon />}
                label="Regulatory Analysis"
                link="/regulatory-analysis"
                choice={3}
