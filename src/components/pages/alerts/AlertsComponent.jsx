@@ -24,7 +24,7 @@ const AlertsComponent = () => {
    return (
       <Box padding="3vh 10vh 3vh 10vh">
          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Box>
+            <Box display="flex" justifyContent="space-around">
                <KeyboardDatePicker
                   variant="inline"
                   format="MM/dd/yyyy"

@@ -5,11 +5,14 @@ import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
-import BellIcon from '../../../assets/UI_component_svg/BellIcon';
+// import BellIcon from '../../../assets/UI_component_svg/BellIcon';
+import BellIcon2 from '../../../assets/UI_component_svg/BellIcon2';
 import ExampleAlert from '../../../assets/uploaded_blueprints/alerts-floor-plan-icon.jpg';
 
 const useStyles = makeStyles({
    alertCards: {
+      borderRadius: '15px',
+      maxHeight: '20vh',
       marginTop: '3vh'
    },
    alertContent: {
@@ -32,8 +35,7 @@ const useStyles = makeStyles({
     },
    exampleMinView: {
       flexShrink: 0,
-      height: '100%',
-      width: 'auto',
+      objectFit: 'contain',
       marginLeft: 'auto'
    },
 });
@@ -45,7 +47,7 @@ const Alert = () => {
          <CardContent className={classes.cardContent}>
             <Box marginRight="1vw">
                <IconButton className={classes.bellIcon}>
-                  <BellIcon />
+                  <BellIcon2 />
                </IconButton>
             </Box>
             <Box className={classes.alertContent}>
@@ -54,7 +56,7 @@ const Alert = () => {
                   <Typography variant="h5">Machine Learning Suggestion</Typography>
                </Box>
                <Box>
-                  <Typography>Sensor message</Typography>
+                  <Typography>Message of what sensor detected</Typography>
                </Box>
             </Box>
             <img src={ExampleAlert} className={classes.exampleMinView} alt="Device with Alert"></img>
