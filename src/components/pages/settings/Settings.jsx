@@ -3,7 +3,7 @@ import SettingsComponent from './SettingsComponent';
 
 const Settings = () => {
    return (
-      <MainLayout content={<SettingsComponent />} choice={3} />
+      <MainLayout content={<SettingsComponent />} choice={4} />
     );
 }
 
