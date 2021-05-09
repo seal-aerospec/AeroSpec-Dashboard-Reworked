@@ -10,7 +10,14 @@ import ExampleAlert from '../../../assets/uploaded_blueprints/alerts-floor-plan-
 
 const useStyles = makeStyles({
    alertCards: {
-      marginTop: '3vh'
+      marginTop: '3vh',
+
+      '&:hover': {
+         transition: '0.13s',
+         backgroundColor: '#F4FFFF',
+         borderColor:'#A2DAD9',
+         borderWidth: 2.5,
+      },
    },
    alertContent: {
       display: 'flex',
@@ -41,7 +48,7 @@ const useStyles = makeStyles({
 const Alert = () => {
    const classes = useStyles();
    return (
-      <Card className={classes.alertCards}>
+      <Card variant="outlined" className={classes.alertCards}>
          <CardContent className={classes.cardContent}>
             <Box marginRight="1vw">
                <IconButton className={classes.bellIcon}>
