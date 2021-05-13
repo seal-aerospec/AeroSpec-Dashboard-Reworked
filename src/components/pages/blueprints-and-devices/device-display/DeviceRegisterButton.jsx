@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   Button,
@@ -78,11 +78,29 @@ const DeviceRegisterButton = () => {
     setOpen(false);
   };
 
-  const handleSave = () => {
+  async function handleSave() {
     if (serialN !== "") {
       setOpen(false);
+      console.log(serialN);
+      const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify({"deviceName":serialN})
+      };
+      fetch('https://awwwmy2l14.execute-api.us-west-2.amazonaws.com/dev/thing-register', requestOptions)
+          .then(checkStatus)
+          .then(response => response.text())
+          .then(response => console.log(response));
     }
   }
+
+  function checkStatus(response) {
+    if (response.ok) {
+      return response;
+    } else {
+       throw Error("Error in request: " + response.statusText);
+    }
+  }
+
   return (
     <Box>
       <Button className={classes.text} onClick={handleClickOpen}>Add +</Button>
