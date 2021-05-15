@@ -6,6 +6,7 @@ import DeviceDetails from './pages/device-details/DeviceDetails';
 import Alerts from './pages/alerts/Alerts';
 import BlueprintAndDevices from './pages/blueprints-and-devices/BlueprintsAndDevices';
 import Settings from './pages/settings/Settings';
+import RegulatoryAnalysis from './pages/regulatory-analysis/RegulatoryAnalysis';
 
 import Themes from '../styles/Themes';
 import '../styles/App.css';
@@ -38,6 +39,10 @@ function App() {
 
       <Route exact path="/settings">
          <Settings />
+      </Route>
+
+      <Route exact path="/regulatory-analysis">
+         <RegulatoryAnalysis />
       </Route>
 
    </Switch>
