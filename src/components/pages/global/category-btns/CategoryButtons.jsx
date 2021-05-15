@@ -37,7 +37,7 @@ const CategoryButtons = (props) => {
         {obj.long}
       </Button>
     );
-  })
+  });
   return (
     <Box>
        {cateComponent}

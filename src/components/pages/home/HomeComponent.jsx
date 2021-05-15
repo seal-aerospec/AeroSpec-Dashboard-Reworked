@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      margin: '3vh 5vh 3vh 5vh',
+      margin: '3vh 5vh 3vh 5vh'
    }
 }));
 
@@ -18,12 +18,11 @@ const HomeComponent = (props) => {
    const classes = useStyles();
    return (
       <Box className={classes.homeContainer}>
-         <CategoryButtons parentLink='/home'/>
+         <CategoryButtons parentLink='/home' />
          <p>{props.category} Floor Plan</p>
          <p>Time: {props.time}</p>
          <MainContent />
       </Box>
    );
 }
-
 export default HomeComponent;
