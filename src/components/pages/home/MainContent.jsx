@@ -32,6 +32,7 @@ const MainContent = () => {
          <DevicePoints deviceN={obj.deviceN} x={obj.x} y={obj.y} />
       );
    });
+   
    return (
       <Box className={classes.mainContentContainer}>
          <TimeSlider className={classes.TimeSlider} />
