@@ -104,12 +104,17 @@ const DeviceRegisterButton = (props) => {
     setOpen(false);
   };
 
+  const handleBlueprintCanvasEditing = () => {
+    setOpen(false);
+    props.disableCanvas("false");
+  }
+
   const handleRegisterSuccessClose = () => {
     setRegisterSuccessOpen(false);
   }
   async function handleSave() {
-    setLoadingHidden('visible');
     if (serialN !== "") {
+      setLoadingHidden('visible');
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify({"deviceName":serialN})
@@ -179,7 +184,7 @@ const DeviceRegisterButton = (props) => {
             variant="contained"
             component="label"
             className={classes.uploadField}
-            onClick={handleClose}
+            onClick={handleBlueprintCanvasEditing}
           >
             Put Your Device On the Page
         </Button>

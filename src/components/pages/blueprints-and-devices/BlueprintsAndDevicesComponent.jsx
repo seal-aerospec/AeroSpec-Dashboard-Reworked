@@ -19,14 +19,15 @@ const useStyles = makeStyles((theme) => ({
 const BlueprintsAndDevicesComponent = () => {
    const classes = useStyles();
    const [dotList, setDotList] = useState([]);
+   const [canvasDisable, setCanvasDisable] = useState("true");
 
    return (
       <Box display="flex" style={{width: '100%'}}>
          <Box className={classes.blueprintContainer}>
-            <BlueprintCanvas disabled="true" dotList={dotList} setDotList={setDotList} />
+            <BlueprintCanvas disabled={canvasDisable} dotList={dotList} setDotList={setDotList} />
          </Box>
          <Box className={classes.deviceContainer}>
-            <DeviceList />
+            <DeviceList disableCanvas={setCanvasDisable}/>
          </Box>
       </Box>
     );

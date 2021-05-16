@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
    }
 }));
 
-const DeviceList = () => {
+const DeviceList = (props) => {
    const classes = useStyles();
    const [deviceList, setDeviceList] = React.useState([]);
    function handleRegSuccess(serialN) {
@@ -39,7 +39,8 @@ const DeviceList = () => {
       <Paper variant="outlined" square className={classes.listContainer}>
          <Box className={classes.header}>
             <Typography display="inline" variant="h5">My Devices</Typography>
-            <DeviceRegisterButton addDeviceFunc={handleRegSuccess}/>
+            {console.log("type of disableCanvas", props.disableCanvas)}
+            <DeviceRegisterButton disableCanvas={props.disableCanvas} addDeviceFunc={handleRegSuccess}/>
          </Box>
          <Box>
             {deviceList}
