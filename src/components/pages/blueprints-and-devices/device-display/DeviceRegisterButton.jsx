@@ -11,6 +11,9 @@ import {
   DialogTitle
 } from '@material-ui/core';
 
+import LoadingImage from '../../../../assets/UI_component/loading.gif';
+import RegistSuccessImage from '../../../../assets/UI_component/regist_success.png';
+import { fontSize } from '@material-ui/system';
 const useStyles = makeStyles((theme) => ({
   registerBackDrop: {
     background: 'rgba(0,0,0,0.2)'
@@ -24,6 +27,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     alignItems: 'center'
   },
+  success: {
+    height: '50vh',
+    width: '90vh',
+    textAlign: 'left',
+    wordWrap: 'break-word'
+  },
   uploadField: {
     borderRadius: '2vh',
     height: '40%',
@@ -33,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: '2px',
     borderColor: '#c7cdd4',
     marginBottom: '3vh',
-    boxShadow: 'none'
   },
   cancelButton: {
     height: '7vh',
@@ -63,25 +71,45 @@ const useStyles = makeStyles((theme) => ({
   text: {
     color: '#2E4765',
     opacity: '55%',
- }
+  },
+  loadingImage: {
+    height: '8vh',
+    width: '8vh',
+    hidden: 'false'
+  },
+  loadingImageHidden: {
+    height: '8vh',
+    width: '8vh',
+    hidden: 'true'
+  },
+  registSuccessImg: {
+    height: '10vh',
+    width: '10vh'
+  }
 }));
 const DeviceRegisterButton = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [successRegisterOpen, setRegisterSuccessOpen] = React.useState(false);
+  const [deviceInfo, setDeviceRegInfo] = React.useState('[]');
   const [serialN, setSerialN] = React.useState("");
+  const [loadingHidden, setLoadingHidden] = React.useState('hidden');
 
   const handleClickOpen = () => {
     setOpen(true);
+    setRegisterSuccessOpen(false);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
+  const handleRegisterSuccessClose = () => {
+    setRegisterSuccessOpen(false);
+  }
   async function handleSave() {
+    setLoadingHidden('visible');
     if (serialN !== "") {
-      setOpen(false);
-      console.log(serialN);
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify({"deviceName":serialN})
@@ -89,8 +117,15 @@ const DeviceRegisterButton = () => {
       fetch('https://awwwmy2l14.execute-api.us-west-2.amazonaws.com/dev/thing-register', requestOptions)
           .then(checkStatus)
           .then(response => response.text())
-          .then(response => console.log(response));
+          .then(handleResponse);
     }
+  }
+  function handleResponse(response) {
+    setRegisterSuccessOpen(true);
+    setDeviceRegInfo(response);
+    setTimeout(() => setOpen(false),3000);
+    setLoadingHidden('hidden');
+
   }
 
   function checkStatus(response) {
@@ -101,6 +136,8 @@ const DeviceRegisterButton = () => {
     }
   }
 
+  const certificateArn = (JSON.parse(deviceInfo).body === undefined)? '':JSON.parse(deviceInfo).body.certificateArn;
+  const certificateId = (JSON.parse(deviceInfo).body === undefined)? '' :JSON.parse(deviceInfo).body.certificateId;
   return (
     <Box>
       <Button className={classes.text} onClick={handleClickOpen}>Add +</Button>
@@ -152,6 +189,39 @@ const DeviceRegisterButton = () => {
           <Button onClick={handleSave} className={classes.saveButton}>
             Save
           </Button>
+          <Dialog
+            PaperProps={{
+              classes: {
+                root: classes.success
+              }
+            }}
+            BackdropProps={{
+              classes: {
+                root: classes.registerBackDrop
+              }
+            }}
+            open={successRegisterOpen}
+            onClose={handleRegisterSuccessClose}
+            aria-labelledby="form-dialog-title"
+          >
+          <DialogContent>
+            <DialogContentText>
+              <img src={RegistSuccessImage} className={classes.registSuccessImg}/>
+              Device (<b>{serialN}</b>) Registed Successfully
+            </DialogContentText>
+            <DialogContentText>
+              Certificate ARN:
+              </DialogContentText>
+              <DialogContentText>
+              {certificateArn}
+              <DialogContentText/>
+              <DialogContentText>
+              Certificate Id: {certificateId}
+              </DialogContentText>
+              </DialogContentText>
+          </DialogContent>
+          </Dialog>
+          <img src={LoadingImage} className={classes.loadingImage} style={{visibility: loadingHidden}}/>
         </DialogActions>
       </Dialog>
     </Box>

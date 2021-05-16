@@ -64,7 +64,7 @@ const Device = (props) => {
       return (
          <Card onClick={handleExpand} className={classes.cardContainer} variant={outlined}>
             <Typography variant="overline" className={classes.textSubtitle}>
-               Device Name
+               Serial Name
             </Typography>
             <Box className={`${classes.header} ${classes.text}`}>
                <Typography variant="h5">AeroSpec 9</Typography>
