@@ -1,3 +1,4 @@
+import React from 'react';
 import Device from './Device';
 import DeviceRegisterButton from './DeviceRegisterButton';
 
@@ -28,14 +29,20 @@ const useStyles = makeStyles((theme) => ({
 
 const DeviceList = () => {
    const classes = useStyles();
+   const [deviceList, setDeviceList] = React.useState([]);
+   function handleRegSuccess(serialN) {
+      if (serialN !== '') {
+         setDeviceList([...deviceList, <Device serialN={serialN}/>])
+      }
+   }
    return (
       <Paper variant="outlined" square className={classes.listContainer}>
          <Box className={classes.header}>
             <Typography display="inline" variant="h5">My Devices</Typography>
-            <DeviceRegisterButton />
+            <DeviceRegisterButton addDeviceFunc={handleRegSuccess}/>
          </Box>
          <Box>
-            <Device />
+            {deviceList}
          </Box>
       </Paper>
    );

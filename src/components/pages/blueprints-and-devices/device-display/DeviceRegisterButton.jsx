@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Box,
   Button,
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     width: '10vh'
   }
 }));
-const DeviceRegisterButton = () => {
+const DeviceRegisterButton = (props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [successRegisterOpen, setRegisterSuccessOpen] = React.useState(false);
@@ -121,6 +121,7 @@ const DeviceRegisterButton = () => {
     }
   }
   function handleResponse(response) {
+    props.addDeviceFunc(serialN);
     setRegisterSuccessOpen(true);
     setDeviceRegInfo(response);
     setTimeout(() => setOpen(false),3000);
