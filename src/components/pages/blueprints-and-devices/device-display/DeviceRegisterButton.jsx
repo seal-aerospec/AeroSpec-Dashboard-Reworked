@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   uploadField: {
     borderRadius: '2vh',
-    height: '40%',
+    height: '20%',
     width: '50%',
     backgroundColor: 'white',
     borderStyle: 'dashed',
@@ -94,6 +94,7 @@ const DeviceRegisterButton = (props) => {
   const [deviceInfo, setDeviceRegInfo] = React.useState('[]');
   const [serialN, setSerialN] = React.useState("");
   const [loadingHidden, setLoadingHidden] = React.useState('hidden');
+  const [deviceNickname, setDeviceNickname] = React.useState('');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -179,6 +180,14 @@ const DeviceRegisterButton = (props) => {
             type="serialN"
             fullWidth
           />
+          <TextField
+            value={deviceNickname}
+            onChange={event => setSerialN(event.target.value)}
+            margin="dense"
+            label="Device Nick Name"
+            type="deviceNickName"
+            fullWidth
+          />
         </DialogContent>
         <Button
             variant="contained"
@@ -186,7 +195,7 @@ const DeviceRegisterButton = (props) => {
             className={classes.uploadField}
             onClick={handleBlueprintCanvasEditing}
           >
-            Put Your Device On the Page
+            Click to Put Your Device On the Blueprint
         </Button>
         <DialogActions>
           <Button onClick={handleClose} className={classes.cancelButton}>

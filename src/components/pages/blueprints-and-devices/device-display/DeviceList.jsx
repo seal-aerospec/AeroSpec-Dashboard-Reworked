@@ -39,7 +39,6 @@ const DeviceList = (props) => {
       <Paper variant="outlined" square className={classes.listContainer}>
          <Box className={classes.header}>
             <Typography display="inline" variant="h5">My Devices</Typography>
-            {console.log("type of disableCanvas", props.disableCanvas)}
             <DeviceRegisterButton disableCanvas={props.disableCanvas} addDeviceFunc={handleRegSuccess}/>
          </Box>
          <Box>
