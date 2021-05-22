@@ -1,6 +1,6 @@
 {
   "auth": {
-    "aerospecdashboardcrdbe794849": {
+    "dashboardrework4c2d76ef": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -8,11 +8,16 @@
     }
   },
   "storage": {
-    "aerospecdashboardcrd9ef5d0ee": {
+    "AeroSpecDashboardUserDataStorage": {
       "service": "S3",
-      "serviceType": "imported",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2021-05-22T23:18:39.995Z"
     }
   }
 }
