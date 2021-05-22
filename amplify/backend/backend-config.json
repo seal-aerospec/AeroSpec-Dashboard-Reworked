@@ -1,0 +1,18 @@
+{
+  "auth": {
+    "aerospecdashboardcrdbe794849": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "storage": {
+    "aerospecdashboardcrd9ef5d0ee": {
+      "service": "S3",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
+  }
+}
