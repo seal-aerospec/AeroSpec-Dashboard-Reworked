@@ -10,6 +10,8 @@ import DeviceIcon from '../../../../assets/UI_component/source 2.png';
 import ExampleBlueprint from '../../../../assets/uploaded_blueprints/example.jpg';
 import EditBlueprintButton from './EditBlueprintButton';
 
+import { Storage } from 'aws-amplify';
+
 const useStyles = makeStyles((theme) => ({
    canvas: {
       display: 'flex',
@@ -45,9 +47,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BlueprintCanvas = (props) => {
-   const list = [];
    const classes = useStyles();
    const canvasRef = useRef(null);
+   let currDevice = useRef(undefined);
    let [modalOpen, setModalOpen] = useState(false);
 
    // draws placed device on blueprint
@@ -59,25 +61,18 @@ const BlueprintCanvas = (props) => {
          context.drawImage(img, 0, 0, "100%", "100%");
       };
       img.src = ExampleBlueprint;
-      var dot = new Image();
+      const dot = new Image();
       dot.src = DeviceIcon;
       canvas.addEventListener("click", function (event) {
+         if (currDevice.current !== undefined) {
+            context.clearRect(currDevice.current.x, currDevice.current.y, 25, 25);
+         }
          var x = event.offsetX - 10;
          var y = event.offsetY - 10;
          context.drawImage(dot, x, y, 25, 25);
+         currDevice.current = { "x": x, "y": y };
       });
    }, []);
-
-   function drawOne(event) {
-      var dot = new Image();
-      dot.src = DeviceIcon;
-      var x = event.nativeEvent.offsetX - 10;
-      var y = event.nativeEvent.offsetY - 10;
-      let each = { "x": x, "y": y };
-      list.push(each);
-      alert("A new device is placed");
-      props.setDotList(list);
-   }
 
    function handleImage(e) {
       let canvas = canvasRef.current;
@@ -94,6 +89,38 @@ const BlueprintCanvas = (props) => {
       reader.readAsDataURL(e.target.files[0]);
    }
 
+   async function saveCoordinate() {
+      console.log("new device saved at (x: " + currDevice.current.x + " y: " + currDevice.current.y + ")");
+      props.dotList.push(currDevice);
+      currDevice.current = undefined;
+      alert("A new device's location has been saved.");
+      try {
+         const deviceList = await Storage.get(`coordinates`);
+         console.log(deviceList);
+      } catch (err) {
+         console.error("ERROR: " + err);
+      }
+   }
+
+   async function download() {
+      const filename = "coordinates"; // the name of the file that we're downloading
+      const result = await Storage.get(filename, { download: true });
+      const blob = result.Body;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename || 'download';
+      const clickHandler = () => {
+         setTimeout(() => {
+            URL.revokeObjectURL(url);
+            a.removeEventListener('click', clickHandler);
+         }, 150);
+      };
+      a.addEventListener('click', clickHandler, false);
+      a.click();
+      return a;
+   }
+
    return (
       <Paper style={{ padding: "5vh" }}>
          <Box display="flex" flexWrap="wrap" className={classes.blueprintHeader}>
@@ -106,13 +133,16 @@ const BlueprintCanvas = (props) => {
                   setModalOpen={setModalOpen}
                   handleImage={handleImage}
                />
-               <Button className={classes.saveBtn}>
+               <Button className={classes.saveBtn} onClick={saveCoordinate}>
                   Save Changes
                </Button>
             </Box>
          </Box>
+         <Button onClick={download}>
+            Download Blueprint
+         </Button>
          <div>
-            <canvas id="board" display="block" ref={canvasRef} width="700px" height="500px" onClick={drawOne} />
+            <canvas id="board" display="block" ref={canvasRef} width="700px" height="500px" />
             <img id="bp" src={ExampleBlueprint} alt="blueprint" style={{ display: "none" }} />
          </div>
       </Paper>
