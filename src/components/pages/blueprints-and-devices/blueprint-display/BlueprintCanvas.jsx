@@ -95,16 +95,19 @@ const BlueprintCanvas = (props) => {
       alert("A new device's location has been saved at (x: " + currDevice.current.x
          + " y: " + currDevice.current.y + ")");
       try {
-         let deviceList = await Storage.get(`user123`, {download: true});
+         // TODO: change user456 with user's ID
+         let deviceList = await Storage.get("user456", {download: true});
          deviceList = await deviceList.Body.text();
          deviceList = await JSON.parse(deviceList);
+         // TODO: change device with name of device
          deviceList.deviceList.push({
-            device: {
+            "device": {
                "x": currDevice.current.x,
                "y": currDevice.current.y
             }
          });
-         await Storage.put(`user123`, deviceList);
+         console.log(deviceList);
+         await Storage.put("user456", deviceList);
          currDevice.current = undefined;
       } catch (err) {
          console.error("ERROR: " + err);
