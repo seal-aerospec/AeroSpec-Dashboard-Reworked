@@ -9,7 +9,10 @@ const awsmobile = {
     "aws_user_pools_web_client_id": "261umf5hes1q3lug2aait6vqaf",
     "oauth": {},
     "aws_user_files_s3_bucket": "aerospec-dashboard-user-data-storage160954-dev",
-    "aws_user_files_s3_bucket_region": "us-west-2"
+    "aws_user_files_s3_bucket_region": "us-west-2",
+    "aws_appsync_graphqlEndpoint": "https://ndebt7zqkvhnrjzhmblbt4wqka.appsync-api.us-west-2.amazonaws.com/graphql",
+    "aws_appsync_region": "us-west-2",
+    "aws_appsync_authenticationType": "AWS_IAM"
 };
 
 

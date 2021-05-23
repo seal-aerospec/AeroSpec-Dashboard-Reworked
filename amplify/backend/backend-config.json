@@ -19,5 +19,19 @@
       "type": "cicd",
       "lastPushTimeStamp": "2021-05-22T23:18:39.995Z"
     }
+  },
+  "api": {
+    "dashboardrework": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AWS_IAM"
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
   }
 }
