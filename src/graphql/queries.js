@@ -20,13 +20,10 @@ export const getSchemaNew = /* GraphQL */ `
       PC_2_5um
       PC_5um
       Relative_Humidity
-      Serial_Number
       Temperature_c
       time
       total_VoC_ppb
       Wifi_Strength
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -64,13 +61,10 @@ export const listSchemaNews = /* GraphQL */ `
         PC_2_5um
         PC_5um
         Relative_Humidity
-        Serial_Number
         Temperature_c
         time
         total_VoC_ppb
         Wifi_Strength
-        createdAt
-        updatedAt
       }
       nextToken
     }
