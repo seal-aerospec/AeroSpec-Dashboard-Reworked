@@ -1,6 +1,5 @@
-# Help Fill Readme
-
-Hey guys I have no idea how to fill readme so help please
+# Get Started
+This is the Readme for explaining project structure and UI. For backend set up and using of code please see the Readme inside the ./amplify-tutorial folder
 
 # Navigations
 Making changes to the left hand navigations bar can be found under `src/pages/global/navbar`
