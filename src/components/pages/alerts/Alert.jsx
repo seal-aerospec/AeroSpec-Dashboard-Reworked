@@ -11,6 +11,7 @@ import ExampleAlert from '../../../assets/uploaded_blueprints/alerts-floor-plan-
 const useStyles = makeStyles({
    alertCards: {
       marginTop: '3vh',
+      borderWidth: 2.5,
 
       '&:hover': {
          transition: '0.13s',
@@ -18,6 +19,7 @@ const useStyles = makeStyles({
          borderColor:'#A2DAD9',
          borderWidth: 2.5,
       },
+
    },
    alertContent: {
       display: 'flex',
