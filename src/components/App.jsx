@@ -11,6 +11,11 @@ import RegulatoryAnalysis from './pages/regulatory-analysis/RegulatoryAnalysis';
 import Themes from '../styles/Themes';
 import '../styles/App.css';
 
+import Amplify from 'aws-amplify';
+import awsconfig from '../aws-exports';
+
+Amplify.configure(awsconfig);
+
 function App() {
   return (
    <ThemeProvider theme={Themes}>

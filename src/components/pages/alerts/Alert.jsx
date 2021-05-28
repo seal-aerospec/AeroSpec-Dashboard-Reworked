@@ -13,13 +13,14 @@ import ExampleAlert from '../../../assets/uploaded_blueprints/alerts-floor-plan-
 
 const useStyles = makeStyles({
    alertCards: {
-      border: '2px solid #FFFFFF',
+      border: '2.5px solid #FFFFFF',
       borderRadius: '5px',
       width: 'auto',
       marginTop: '3vh',
       "&:hover": {
-         borderColor: '#A2DAD9',
+         transition: '0.13s',
          backgroundColor: '#F4FFFF',
+         borderColor: '#A2DAD9',
       }
    },
    cardContent: {
