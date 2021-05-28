@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "aerospecdashboardcrdbe794849_identitypool_be794849",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "aerospbe794849",
-    "userPoolName": "aerospecdashboardcrdbe794849_userpool_be794849",
+    "identityPoolName": "dashboardrework4c2d76ef_identitypool_4c2d76ef",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "dashbo4c2d76ef",
+    "userPoolName": "dashboardrework4c2d76ef_userpool_4c2d76ef",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "aerospbe794849_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "dashbo4c2d76ef_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "be794849",
-    "resourceName": "aerospecdashboardcrdbe794849",
+    "sharedId": "4c2d76ef",
+    "resourceName": "dashboardrework4c2d76ef",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [

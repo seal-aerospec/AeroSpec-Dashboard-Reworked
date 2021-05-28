@@ -117,7 +117,6 @@ Parameters:
   userPoolGroupList:
     Type: CommaDelimitedList
       
-            
   serviceName:
     Type: String
   
@@ -144,7 +143,7 @@ Resources:
   # Created to allow the UserPool SMS Config to publish via the Simple Notification Service during MFA Process
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, 'aerospbe794849_sns-role', !Join ['',[ 'sns', 'be794849', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, 'dashbo4c2d76ef_sns-role', !Join ['',[ 'sns', '4c2d76ef', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -156,10 +155,10 @@ Resources:
               - "sts:AssumeRole"
             Condition:
               StringEquals:
-                sts:ExternalId: aerospbe794849_role_external_id
+                sts:ExternalId: dashbo4c2d76ef_role_external_id
       Policies:
         -
-          PolicyName: aerospbe794849-sns-policy
+          PolicyName: dashbo4c2d76ef-sns-policy
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -210,7 +209,7 @@ Resources:
       SmsAuthenticationMessage: !Ref smsAuthenticationMessage
       SmsConfiguration:
         SnsCallerArn: !GetAtt SNSRole.Arn
-        ExternalId: aerospbe794849_role_external_id
+        ExternalId: dashbo4c2d76ef_role_external_id
     
   
   UserPoolClientWeb:
@@ -218,7 +217,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: aerospbe794849_app_clientWeb
+      ClientName: dashbo4c2d76ef_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -228,7 +227,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: aerospbe794849_app_client
+      ClientName: dashbo4c2d76ef_app_client
       
       GenerateSecret: !Ref userpoolClientGenerateSecret
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
@@ -239,7 +238,7 @@ Resources:
   # Created to execute Lambda which gets userpool app client config values
     Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', 'be794849', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
+      RoleName: !If [ShouldNotCreateEnvResources, !Ref userpoolClientLambdaRole, !Join ['',['upClientLambdaRole', '4c2d76ef', !Select [3, !Split ['-', !Ref 'AWS::StackName']], '-', !Ref env]]]
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -293,7 +292,7 @@ Resources:
   # Marked as depending on UserPoolClientRole for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: aerospbe794849_userpoolclient_lambda_iam_policy
+      PolicyName: dashbo4c2d76ef_userpoolclient_lambda_iam_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -310,7 +309,7 @@ Resources:
   # Marked as depending on UserPoolClientLambdaPolicy for easier to understand CFN sequencing
     Type: 'AWS::IAM::Policy'
     Properties:
-      PolicyName: aerospbe794849_userpoolclient_lambda_log_policy
+      PolicyName: dashbo4c2d76ef_userpoolclient_lambda_log_policy
       Roles:
         - !Ref UserPoolClientRole
       PolicyDocument:
@@ -350,7 +349,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties:
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'aerospecdashboardcrdbe794849_identitypool_be794849', !Join ['',['aerospecdashboardcrdbe794849_identitypool_be794849', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'dashboardrework4c2d76ef_identitypool_4c2d76ef', !Join ['',['dashboardrework4c2d76ef_identitypool_4c2d76ef', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient
@@ -394,9 +393,6 @@ Outputs :
   UserPoolId:
     Value: !Ref 'UserPool'
     Description:  Id for the user pool
-  UserPoolArn:
-    Value: !GetAtt UserPool.Arn
-    Description:  Arn for the user pool
   UserPoolName:
     Value: !Ref userPoolName
   AppClientIDWeb:
