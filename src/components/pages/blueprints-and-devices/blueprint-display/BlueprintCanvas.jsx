@@ -14,8 +14,12 @@ import { Storage } from 'aws-amplify';
 
 const useStyles = makeStyles((theme) => ({
    canvas: {
-      display: 'flex',
-      flexDirection: 'column',
+      position: 'relative',
+      zIndex: 20,
+   },
+   blueprint: {
+      position: 'absolute',
+      zIndex: 1,
    },
    blueprintHeader: {
       display: 'flex',
@@ -153,10 +157,11 @@ const BlueprintCanvas = (props) => {
          <Button onClick={download}>
             Download Blueprint
          </Button>
-         <div>
-            <canvas id="board" display="block" ref={canvasRef} width="700px" height="500px" />
-            <img id="bp" src={ExampleBlueprint} alt="blueprint" style={{ display: "none" }} />
-         </div>
+         <Box>
+            <img id="bp" src={ExampleBlueprint} alt="blueprint" width="700px" height="500px"
+               className={classes.blueprint} />
+            <canvas ref={canvasRef} width="700px" height="500px" className={classes.canvas} />
+         </Box>
       </Paper>
    );
 }
