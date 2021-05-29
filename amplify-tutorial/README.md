@@ -21,6 +21,7 @@ AppSync GraphQL Api name | dashboardrework-dev
   - [JS code sample for Make a Call to Fetch Data](#js-code-for-make-a-call-to-fetch-data)
   - [Change Schema for GraphQL](#changing-schema-for-graphqL)
     - [TroubleShooting](#troubleshooting)
+  - [Remove API and Add it Back](#remove-api-completely-and-add-back)
 - [S3 bucket/Storage](#s3-bucket)
   - [JS code sample Upload and download files](#js-code-for-uploading-and-downloading-files)
 
@@ -99,7 +100,7 @@ export default RegulatoryAnalysisComponent;
 ```
 amplify push
 ```
-> The step will 1. compile your newly writtened schema (raise error if your GraphQL Syntax for schema is incorrect). 2. Generate a build directory under amplify/backend/api/dashboardrework 3. Push all the changes to the AWS cloud side
+> The step will 1. compile your newly writtened schema (raise error if your GraphQL Syntax for schema is incorrect). 2. Generate a build directory under amplify/backend/api/dashboardrework 3. Push all the changes to the AWS cloud
 3. It may take some a few minutes depends on network. *Don't close your laptop any Internet disrupt will lead to a mess*.
 4. After it is done, open AppSync console go to [api name(see Resource & Name Section above)] -> Data Source on left hand side. Make sure it is still link to the table name you want.
 ![AppSync Correct Table](./tutorialImg/AppSyncTableRight.jpg)
@@ -149,15 +150,16 @@ You should make this work before testing on your local development. After this w
 - Other Problem
   - Google Search Error Message, or follow the section "Remove API completely and add back"
 
+## Remove API completely and add back
+In some case that we messed up with the cloud environment and can't find reason, it would be better for us to delete the api as a whole and add it back.
 
-
-
-
-
-
-  - ___Please be careful and open a new git branch ```git checkout -b changeAPI ```___
-  - Then mannually delete your api by entering ```amplify remove api ``` in local development to remove the api in local and then ```amplify push ``` to update the delete of api on cloud.
-  - Then please follow the section "Add GraphQL for first time" to add the api back
+1. ___Please be careful and open a new git branch ```git checkout -b [changeAPI] ```___ replace ```[changeAPI]``` with a desired name
+2. Then mannually delete your api by entering ```amplify remove api ``` in local development to remove the api in local environment, if you check folder ```amplify/backend/api``` this folder will be empty after this command.
+3. Write ```amplify push ``` in command line to update the deletion of api on cloud.
+> This step **will** automatically delete the api on AppSync console, remove the relative API roles that is not necessary.
+> This step **will not** delete the DynamoDB table or Amplify App because we only delete the api.
+3. Please log in to AppSync console to see if the api was successfully deleted.
+4. Add a new
 
 
 
