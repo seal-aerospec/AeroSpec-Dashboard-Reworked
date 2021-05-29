@@ -13,6 +13,9 @@ import EditBlueprintButton from './EditBlueprintButton';
 import { Storage } from 'aws-amplify';
 
 const useStyles = makeStyles((theme) => ({
+   hidden: {
+      display: 'none',
+   },
    canvas: {
       position: 'relative',
       zIndex: 20,
@@ -148,7 +151,7 @@ const BlueprintCanvas = (props) => {
          </Button>
          <Box>
             <img id="bp" src={blueprint} alt="blueprint" width="700px" height="500px"
-               className={classes.blueprint} />
+               className={blueprint ? classes.blueprint : classes.hidden} />
             <canvas ref={canvasRef} width="700px" height="500px" className={classes.canvas} />
          </Box>
       </Paper>
