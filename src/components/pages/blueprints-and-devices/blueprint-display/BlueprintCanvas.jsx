@@ -79,7 +79,16 @@ const BlueprintCanvas = (props) => {
    function handleImage(e) {
       var reader = new FileReader();
       reader.onload = function (event) {
+         const canvas = canvasRef.current;
+         const image = new Image();
+         image.src = event.target.result;
          setBlueprint(event.target.result);
+         image.onload = (event) => {
+            document.getElementById("bp").width = event.target.width;
+            document.getElementById("bp").width = event.target.height;
+            canvas.width = event.target.width;
+            canvas.height = event.target.height;
+         }
       }
       reader.readAsDataURL(e.target.files[0]);
    }
@@ -150,7 +159,7 @@ const BlueprintCanvas = (props) => {
             </Box>
          </Box>
          <Box>
-            <img id="bp" src={blueprint} alt="blueprint" width="700px" height="500px"
+            <img id="bp" src={blueprint} alt="blueprint"
                className={blueprint ? classes.blueprint : classes.hidden} />
             <canvas ref={canvasRef} width="700px" height="500px" className={classes.canvas} />
          </Box>
