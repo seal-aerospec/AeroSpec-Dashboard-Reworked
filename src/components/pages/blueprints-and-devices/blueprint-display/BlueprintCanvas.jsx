@@ -55,16 +55,12 @@ const BlueprintCanvas = (props) => {
    const canvasRef = useRef(null);
    let currDevice = useRef(undefined);
    let [modalOpen, setModalOpen] = useState(false);
+   let [blueprint, setBlueprint] = useState();
 
    // draws placed device on blueprint
    useEffect(() => {
       const canvas = canvasRef.current;
       const context = canvas.getContext('2d');
-      const img = document.getElementById("bp");
-      img.onload = function () {
-         context.drawImage(img, 0, 0, "100%", "100%");
-      };
-      img.src = ExampleBlueprint;
       const dot = new Image();
       dot.src = DeviceIcon;
       canvas.addEventListener("click", function (event) {
@@ -79,16 +75,9 @@ const BlueprintCanvas = (props) => {
    }, []);
 
    function handleImage(e) {
-      let canvas = canvasRef.current;
-      let ctx = canvas.getContext('2d');
-      alert("New blueprint uploaded");
       var reader = new FileReader();
       reader.onload = function (event) {
-         var img = new Image();
-         img.onload = function () {
-            ctx.drawImage(img, 0, 0);
-         }
-         img.src = event.target.result;
+         setBlueprint(event.target.result);
       }
       reader.readAsDataURL(e.target.files[0]);
    }
@@ -158,7 +147,7 @@ const BlueprintCanvas = (props) => {
             Download Blueprint
          </Button>
          <Box>
-            <img id="bp" src={ExampleBlueprint} alt="blueprint" width="700px" height="500px"
+            <img id="bp" src={blueprint} alt="blueprint" width="700px" height="500px"
                className={classes.blueprint} />
             <canvas ref={canvasRef} width="700px" height="500px" className={classes.canvas} />
          </Box>
