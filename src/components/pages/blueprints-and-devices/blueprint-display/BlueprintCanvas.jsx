@@ -83,9 +83,11 @@ const BlueprintCanvas = (props) => {
          const image = new Image();
          image.src = event.target.result;
          setBlueprint(event.target.result);
+
+         // set the image and canvas width and height based on uploaded img
          image.onload = (event) => {
             document.getElementById("bp").width = event.target.width;
-            document.getElementById("bp").width = event.target.height;
+            document.getElementById("bp").height = event.target.height;
             canvas.width = event.target.width;
             canvas.height = event.target.height;
          }
@@ -94,7 +96,6 @@ const BlueprintCanvas = (props) => {
    }
 
    async function saveCoordinate() {
-      console.log("new device saved at (x: " + currDevice.current.x + " y: " + currDevice.current.y + ")");
       props.dotList.push(currDevice);
       alert("A new device's location has been saved at (x: " + currDevice.current.x
          + " y: " + currDevice.current.y + ")");
@@ -110,7 +111,6 @@ const BlueprintCanvas = (props) => {
                "y": currDevice.current.y
             }
          });
-         console.log(deviceList);
          await Storage.put("user456", deviceList);
          currDevice.current = undefined;
       } catch (err) {
@@ -158,7 +158,7 @@ const BlueprintCanvas = (props) => {
                </Button>
             </Box>
          </Box>
-         <Box>
+         <Box display="flex" justifyContent="center">
             <img id="bp" src={blueprint} alt="blueprint"
                className={blueprint ? classes.blueprint : classes.hidden} />
             <canvas ref={canvasRef} width="700px" height="500px" className={classes.canvas} />
