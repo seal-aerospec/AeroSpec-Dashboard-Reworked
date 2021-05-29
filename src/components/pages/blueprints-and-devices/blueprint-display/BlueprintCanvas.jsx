@@ -7,7 +7,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import DeviceIcon from '../../../../assets/UI_component/source 2.png';
-import ExampleBlueprint from '../../../../assets/uploaded_blueprints/example.jpg';
 import EditBlueprintButton from './EditBlueprintButton';
 
 import { Storage } from 'aws-amplify';
@@ -110,24 +109,28 @@ const BlueprintCanvas = (props) => {
       }
    }
 
-   async function download() {
-      const filename = "coordinates"; // the name of the file that we're downloading
-      const result = await Storage.get(filename, { download: true });
-      const blob = result.Body;
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename || 'download';
-      const clickHandler = () => {
-         setTimeout(() => {
-            URL.revokeObjectURL(url);
-            a.removeEventListener('click', clickHandler);
-         }, 150);
-      };
-      a.addEventListener('click', clickHandler, false);
-      a.click();
-      return a;
-   }
+   // async function download() {
+   //    const filename = "user456"; // the name of the file that we're downloading
+   //    try {
+   //       const result = await Storage.get(filename, { download: false });
+   //       const blob = result.Body;
+   //       const url = URL.createObjectURL(blob);
+   //       const a = document.createElement('a');
+   //       a.href = url;
+   //       a.download = filename || 'download';
+   //       const clickHandler = () => {
+   //          setTimeout(() => {
+   //             URL.revokeObjectURL(url);
+   //             a.removeEventListener('click', clickHandler);
+   //          }, 150);
+   //       };
+   //       a.addEventListener('click', clickHandler, false);
+   //       a.click();
+   //       return a;
+   //    } catch (err) {
+   //       console.log(err);
+   //    }
+   // }
 
    return (
       <Paper style={{ padding: "5vh" }}>
@@ -146,9 +149,6 @@ const BlueprintCanvas = (props) => {
                </Button>
             </Box>
          </Box>
-         <Button onClick={download}>
-            Download Blueprint
-         </Button>
          <Box>
             <img id="bp" src={blueprint} alt="blueprint" width="700px" height="500px"
                className={blueprint ? classes.blueprint : classes.hidden} />
