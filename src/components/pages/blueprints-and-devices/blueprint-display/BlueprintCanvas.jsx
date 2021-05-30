@@ -96,25 +96,28 @@ const BlueprintCanvas = (props) => {
    }
 
    async function saveCoordinate() {
-      props.dotList.push(currDevice);
-      alert("A new device's location has been saved at (x: " + currDevice.current.x
-         + " y: " + currDevice.current.y + ")");
-      try {
-         // TODO: change user456 with user's ID
-         let deviceList = await Storage.get("user456", {download: true});
-         deviceList = await deviceList.Body.text();
-         deviceList = await JSON.parse(deviceList);
-         // TODO: change device with name of device
-         deviceList.deviceList.push({
-            "device": {
-               "x": currDevice.current.x,
-               "y": currDevice.current.y
-            }
-         });
-         await Storage.put("user456", deviceList);
-         currDevice.current = undefined;
-      } catch (err) {
-         console.error("ERROR: " + err);
+      if (currDevice.current) {
+         props.dotList.push(currDevice);
+         alert("A new device's location has been saved at (x: " + currDevice.current.x
+            + " y: " + currDevice.current.y + ")");
+         try {
+            // TODO: change user456 with user's ID
+            let deviceList = await Storage.get("user456", {download: true});
+            deviceList = await deviceList.Body.text();
+            deviceList = await JSON.parse(deviceList);
+            // TODO: change device with name of device
+            deviceList.deviceList.push({
+               "name": "deviceName",
+               "coordinates": {
+                  "x": currDevice.current.x,
+                  "y": currDevice.current.y
+               }
+            });
+            await Storage.put("user456", deviceList);
+            currDevice.current = undefined;
+         } catch (err) {
+            console.error("ERROR: " + err);
+         }
       }
    }
 

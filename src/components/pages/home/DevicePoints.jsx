@@ -15,14 +15,16 @@ const DevicePoints = (props) => {
       postion: 'relative'
     }
   }));
+
   const classes = useStyles();
+
   return (
     <IconButton
-        className={classes.points}
-        component={Link}
-        to={`/device-details/${props.deviceN}/co2`}
-        >
-        </IconButton>
+      className={classes.points}
+      component={Link}
+      to={`/device-details/${props.deviceN}/co2`}
+    >
+    </IconButton>
   );
 }
 

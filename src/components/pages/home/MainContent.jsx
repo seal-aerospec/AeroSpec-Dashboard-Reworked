@@ -5,7 +5,10 @@ import DevicePoints from './DevicePoints';
 
 import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
 
-const useStyles = makeStyles((theme) => ({
+import { Storage } from 'aws-amplify';
+import { useEffect, useState } from 'react';
+
+const useStyles = makeStyles(() => ({
    blueprintContainer: {
       display: 'flex',
       flexDirection: 'column',
@@ -15,28 +18,42 @@ const useStyles = makeStyles((theme) => ({
       padding: '2vh',
    },
    floorPlanCanvas: {
-    backgroundImage: `url(${ExampleBlueprint})`,
-    backgroundSize: 'contain',
-    height: '80vh',
-    width: '80vh',
-  }
+      backgroundImage: `url(${ExampleBlueprint})`,
+      backgroundSize: 'contain',
+      height: '800px',
+      width: '800px',
+   }
 }));
 
 const MainContent = () => {
-  const classes = useStyles();
-  const deviceLocationTemp = [{deviceN:1, x:150,y:200},{deviceN:2, x:256,y:61},{deviceN:3, x:135,y:61}];
-  const devicePoints = deviceLocationTemp.map((obj) => {
-    return (
-      <DevicePoints deviceN={obj.deviceN} x={obj.x} y={obj.y}/>
-    );
-  });
-  return (
-    <Box className={classes.blueprintContainer}>
-        <TimeSlider className={classes.TimeSlider}/>
-        <Box className={classes.floorPlanCanvas}>
-          {devicePoints}
-        </Box>
-    </Box>
-  );
+   const classes = useStyles();
+   let [devicePoints, setDevicePoints] = useState([]);
+
+   useEffect(() => {
+      async function getDevices() {
+         let count = 1;
+         // TODO: replace with user's ID
+         let deviceList = await Storage.get("user456", {download: true});
+         deviceList = await deviceList.Body.text();
+         deviceList = await JSON.parse(deviceList);
+         console.log(deviceList);
+         setDevicePoints(deviceList.deviceList.map((obj) => {
+            return (
+               // TODO: replace with real device name
+               <DevicePoints deviceN={obj.name + count++} x={obj.coordinates.x} y={obj.coordinates.y} />
+            );
+         }));
+      }
+      getDevices();
+   }, []);
+
+   return (
+      <Box className={classes.blueprintContainer}>
+         <TimeSlider className={classes.TimeSlider} />
+         <Box className={classes.floorPlanCanvas}>
+            {devicePoints}
+         </Box>
+      </Box>
+   );
 }
 export default MainContent;
