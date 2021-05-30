@@ -159,8 +159,7 @@ In some case that we messed up with the cloud environment and can't find reason,
 > This step **will** automatically delete the api on AppSync console, remove the relative API roles that is not necessary.
 > This step **will not** delete the DynamoDB table or Amplify App because we only delete the api.
 3. Please log in to AppSync console to see if the api was successfully deleted.
-4. Add a new
-
+4. Then you could add new api by running ```amplify add api``` Then please follow the instruction to select GraphQL as API.
 
 
 
