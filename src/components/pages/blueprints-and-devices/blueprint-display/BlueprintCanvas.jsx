@@ -7,15 +7,21 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import DeviceIcon from '../../../../assets/UI_component/source 2.png';
-import ExampleBlueprint from '../../../../assets/uploaded_blueprints/example.jpg';
 import EditBlueprintButton from './EditBlueprintButton';
 
 import { Storage } from 'aws-amplify';
 
 const useStyles = makeStyles((theme) => ({
+   hidden: {
+      display: 'none',
+   },
    canvas: {
-      display: 'flex',
-      flexDirection: 'column',
+      position: 'relative',
+      zIndex: 20,
+   },
+   blueprint: {
+      position: 'absolute',
+      zIndex: 1,
    },
    blueprintHeader: {
       display: 'flex',
@@ -51,16 +57,12 @@ const BlueprintCanvas = (props) => {
    const canvasRef = useRef(null);
    let currDevice = useRef(undefined);
    let [modalOpen, setModalOpen] = useState(false);
+   let [blueprint, setBlueprint] = useState();
 
    // draws placed device on blueprint
    useEffect(() => {
       const canvas = canvasRef.current;
       const context = canvas.getContext('2d');
-      const img = document.getElementById("bp");
-      img.onload = function () {
-         context.drawImage(img, 0, 0, "100%", "100%");
-      };
-      img.src = ExampleBlueprint;
       const dot = new Image();
       dot.src = DeviceIcon;
       canvas.addEventListener("click", function (event) {
@@ -75,62 +77,48 @@ const BlueprintCanvas = (props) => {
    }, []);
 
    function handleImage(e) {
-      let canvas = canvasRef.current;
-      let ctx = canvas.getContext('2d');
-      alert("New blueprint uploaded");
       var reader = new FileReader();
       reader.onload = function (event) {
-         var img = new Image();
-         img.onload = function () {
-            ctx.drawImage(img, 0, 0);
+         const canvas = canvasRef.current;
+         const image = new Image();
+         image.src = event.target.result;
+         setBlueprint(event.target.result);
+
+         // set the image and canvas width and height based on uploaded img
+         image.onload = (event) => {
+            document.getElementById("bp").width = event.target.width;
+            document.getElementById("bp").height = event.target.height;
+            canvas.width = event.target.width;
+            canvas.height = event.target.height;
          }
-         img.src = event.target.result;
       }
       reader.readAsDataURL(e.target.files[0]);
    }
 
    async function saveCoordinate() {
-      console.log("new device saved at (x: " + currDevice.current.x + " y: " + currDevice.current.y + ")");
-      props.dotList.push(currDevice);
-      alert("A new device's location has been saved at (x: " + currDevice.current.x
-         + " y: " + currDevice.current.y + ")");
-      try {
-         // TODO: change user456 with user's ID
-         let deviceList = await Storage.get("user456", {download: true});
-         deviceList = await deviceList.Body.text();
-         deviceList = await JSON.parse(deviceList);
-         // TODO: change device with name of device
-         deviceList.deviceList.push({
-            "device": {
-               "x": currDevice.current.x,
-               "y": currDevice.current.y
-            }
-         });
-         console.log(deviceList);
-         await Storage.put("user456", deviceList);
-         currDevice.current = undefined;
-      } catch (err) {
-         console.error("ERROR: " + err);
+      if (currDevice.current) {
+         props.dotList.push(currDevice);
+         alert("A new device's location has been saved at (x: " + currDevice.current.x
+            + " y: " + currDevice.current.y + ")");
+         try {
+            // TODO: change user456 with user's ID
+            let deviceList = await Storage.get("user456", {download: true});
+            deviceList = await deviceList.Body.text();
+            deviceList = await JSON.parse(deviceList);
+            // TODO: change device with name of device
+            deviceList.deviceList.push({
+               "name": "deviceName",
+               "coordinates": {
+                  "x": currDevice.current.x,
+                  "y": currDevice.current.y
+               }
+            });
+            await Storage.put("user456", deviceList);
+            currDevice.current = undefined;
+         } catch (err) {
+            console.error("ERROR: " + err);
+         }
       }
-   }
-
-   async function download() {
-      const filename = "coordinates"; // the name of the file that we're downloading
-      const result = await Storage.get(filename, { download: true });
-      const blob = result.Body;
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename || 'download';
-      const clickHandler = () => {
-         setTimeout(() => {
-            URL.revokeObjectURL(url);
-            a.removeEventListener('click', clickHandler);
-         }, 150);
-      };
-      a.addEventListener('click', clickHandler, false);
-      a.click();
-      return a;
    }
 
    return (
@@ -150,13 +138,11 @@ const BlueprintCanvas = (props) => {
                </Button>
             </Box>
          </Box>
-         <Button onClick={download}>
-            Download Blueprint
-         </Button>
-         <div>
-            <canvas id="board" display="block" ref={canvasRef} width="700px" height="500px" />
-            <img id="bp" src={ExampleBlueprint} alt="blueprint" style={{ display: "none" }} />
-         </div>
+         <Box display="flex" justifyContent="center">
+            <img id="bp" src={blueprint} alt="blueprint"
+               className={blueprint ? classes.blueprint : classes.hidden} />
+            <canvas ref={canvasRef} width="700px" height="500px" className={classes.canvas} />
+         </Box>
       </Paper>
    );
 }
