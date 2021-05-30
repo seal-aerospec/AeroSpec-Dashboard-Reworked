@@ -121,29 +121,6 @@ const BlueprintCanvas = (props) => {
       }
    }
 
-   // async function download() {
-   //    const filename = "user456"; // the name of the file that we're downloading
-   //    try {
-   //       const result = await Storage.get(filename, { download: false });
-   //       const blob = result.Body;
-   //       const url = URL.createObjectURL(blob);
-   //       const a = document.createElement('a');
-   //       a.href = url;
-   //       a.download = filename || 'download';
-   //       const clickHandler = () => {
-   //          setTimeout(() => {
-   //             URL.revokeObjectURL(url);
-   //             a.removeEventListener('click', clickHandler);
-   //          }, 150);
-   //       };
-   //       a.addEventListener('click', clickHandler, false);
-   //       a.click();
-   //       return a;
-   //    } catch (err) {
-   //       console.log(err);
-   //    }
-   // }
-
    return (
       <Paper style={{ padding: "5vh" }}>
          <Box display="flex" flexWrap="wrap" className={classes.blueprintHeader}>
