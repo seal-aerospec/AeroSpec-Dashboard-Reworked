@@ -1,3 +1,10 @@
+# @model means we will use amplify's model for creating cloud environment bundle for us,
+# otherwise we have to add all cloud settings including create query function ourselves
+# @key means the key we would like to use for searching a single record.
+# They should match the key structure in DynamoDB. Our mock table has two key one is the id of device and another is time record is collected.
+# The schema type should match exactly as the table name in DynamoDB to prevent confusion
+# The body of the schema is in the format of "[column name]: [data type]!".
+# Both column name and type should match exactly in DynamoDB.
 type schemaNew @model @key(fields: ["id", "time"]){
 	id: ID!
 	Battery: String!

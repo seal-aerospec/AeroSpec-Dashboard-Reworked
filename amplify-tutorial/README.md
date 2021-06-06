@@ -7,7 +7,7 @@ Helpful resources:
 - More details on this folder & generated files: https://docs.amplify.aws/cli/reference/files
 - Join Amplify's community: https://amplify.aws/community/
 
-# Resources & Name:
+# Resources and Name:
 | Resource     | Name |
 | ----------- | ----------- |
 | Cloud Deployment Link      | https://main.d2lsmg6fxz0aqr.amplifyapp.com/      |
@@ -140,6 +140,9 @@ You should make this work before testing on your local development. After this w
     > In initial deployment, after ```amplify push ``` the CLI will auto-generate new empty table in DynamoDB if you add ```@model``` in the schema. If you don't add ```@model``` in your schema, then you have to write all queries, cloud setting in json code request mannually yourself. Thus make sure connect to the correct table is a crutial step for set up.
 - Does the JSON return error saying no authentification?
   - Check if your IAM role has access to the DynamoDB you included by following steps 4 - 8
+- Remote queries on AppSync works but not for local development?
+  - Check if queries.js(get and list method) or mutations.js (update and create method) in ```./src/graphql``` has correct schema as you had in AppSync. Amplify will automatically generate two ```createAt``` and ```updateAt``` column that we normally don't have in DyanmoDB and might cause error for fetching.
+  - Does the status says 401 error? (see 401 status error below)
 - Does it returns error code 200 220 5xx?
   > 200, 201, 5xx usually means the cloud set up is failing.
   - Then please follow the section "Remove API completely and add back"
@@ -159,9 +162,18 @@ In some case that we messed up with the cloud environment and can't find reason,
 > This step **will** automatically delete the api on AppSync console, remove the relative API roles that is not necessary.
 > This step **will not** delete the DynamoDB table or Amplify App because we only delete the api.
 3. Please log in to AppSync console to see if the api was successfully deleted.
-4. Then you could add new api by running ```amplify add api``` Then please follow the instruction to select GraphQL as API.
-
-
+4. Then you could add new api by running ```amplify add api``` Then please follow the instruction to fill in the flowing information:
+5. The initial configuration after ```amplify add api```
+- Service: GraphQL
+- API name: (aerospecrework)(Please put the new API name inside [Resource and Name table](#resources-and-name) section
+- Authorization type for API: API_KEY (our api is public right now otherwise we will get a 404 error)
+- date of exiration: 365 days.
+- Annotative schema: Yes (The file ```./amplify-tutorial/mockSchemaExample.graphql```contain a mock schema example, please edit it with most updated column name in DyanmoDB and save.)
+- Fill in directory of the schema as ```./amplify-tutorial/mockSchemaExample.graphql```
+Amplify add command will create folder name as name of api under the ```./amplify/backend/api```. Inside it, the build folder is the compiled version of your schema. The file ```amplify/backend/api/dashboardrework/schema.graphql``` should be same as the ```amplify-tutorial/mockSchemaExample.graphql``` you provided. Also it will update the schema change to the queries under ```src/graphql``` for providing js query quest to our api.
+6. Run command ```amplify push``` to upload the local change to the cloud remote. This will put the api inside the AppSync console and link the backend of the app to our graphql api
+7. Then following step 4-9 in section [Changing Schema for GraphQL](#changing-schema-for-graphqL) to update the connection of AppSync to correct table with correct IAM access.
+8. Test queries in AppSync console first. If it works, test them in local development by using the code in [JS code for Make a Call to Fetch Data](#js-code-for-make-a-call-to-fetch-data).
 
 # S3 Bucket
 ## JS code for uploading and downloading files
