@@ -17,6 +17,7 @@ S3 bucket name | aerospec-dashboard-user-data-storage160954-dev |
 AppSync GraphQL Api name | dashboardrework-dev
 
 # Table of Content
+- [Understand the Dashboard Backend Structure](#understand-the-dashboard-backend-structure)
 - [GraphQL/API](#graphql-api)
   - [JS code sample for Make a Call to Fetch Data](#js-code-for-make-a-call-to-fetch-data)
   - [Change Schema for GraphQL](#changing-schema-for-graphqL)
@@ -24,6 +25,15 @@ AppSync GraphQL Api name | dashboardrework-dev
   - [Remove API and Add it Back](#remove-api-completely-and-add-back)
 - [S3 bucket/Storage](#s3-bucket)
   - [JS code sample Upload and download files](#js-code-for-uploading-and-downloading-files)
+  - [Remove and Initial Set Up](#remove-and-initial-set-up)
+- [Device Register API](#device-register-api)
+  - [Code example](#code-example)
+
+# Understand the Dashboard Backend Structure
+The backend consist three parts, GraphQL API, S3 storage, and Device Register Gateway API.
+- GraphQL API is used for fetching data in AWS DynamoDB. DynamoDB is the queriable data table created by devices. data collected *by devices* will be stored there.
+- S3 bucket is used for storing setting data(including device location) and user uploaded floor plans. Any information collected for single user will be stored inside S3 bucket
+- Device Register Gateway API is used for register device into the IoT core.
 
 # GraphQL API
 [Official Tutorial](https://docs.amplify.aws/lib/graphqlapi/getting-started/q/platform/js#enable-queries-mutations-and-subscriptions)
@@ -176,8 +186,18 @@ Amplify add command will create folder name as name of api under the ```./amplif
 8. Test queries in AppSync console first. If it works, test them in local development by using the code in [JS code for Make a Call to Fetch Data](#js-code-for-make-a-call-to-fetch-data).
 
 # S3 Bucket
-## JS code for uploading and downloading files
 
+## Implementation Logic
+What we currently put inside S3 bucket is the device coordinate (stored as json text file) and the floor plan image (stored as jpg or png) that user uploaded.
+<br/>
+<br/>
+Each time user would like to make change (either register or make change) to the x, y coordinate of the device on the floor plan, we will download the json text file from S3 coordinate, add coordinate as string into json content, and then upload the file with same name (overwrite happens).
+
+## JS code for uploading and downloading files
+A more throughful code example is in [CLI tutorial](https://docs.amplify.aws/lib/storage/getting-started/q/platform/js):
+- [Upload File](https://docs.amplify.aws/lib/storage/upload/q/platform/js)
+- [Download File](https://docs.amplify.aws/lib/storage/download/q/platform/js)
+Save the coordinate of device:
 ```JavaScript
 async function saveCoordinate() {
       console.log("new device saved at (x: " + currDevice.current.x + " y: " + currDevice.current.y + ")");
@@ -223,6 +243,23 @@ async function saveCoordinate() {
       return a;
    }
 ```
+## Remove and Initial Set Up
+1. Remove the storage by enter ```amplify remove storage```
+2. Make sure S3 bucket name disappear in S3 console
+3. ```amplify add storage```. Use the Content (Images, audio, video, etc.) as bucket type and accept all default configurations. Put the name of the bucket into the [Resource and name table](#resources-and-name)
+3. *Important: In the S3 bucket console, put a folder called "/public" in the bucket and put any json text file inside it.
+4. Test if the code for adding coordinate work:
+- In the console, select the bucket name you created and click "Download" button to download and see the text content
+![console download](./tutorialImg/S3ConsoleDownload.jpg)
+- If device coordinate appended in the end of json file, then the connection is successful.
+
+# Device Register API
+An api used for register the devices in IoT Core written in lambda function
+## Endpoint
+- ```/delete-thing``` Post Request. used for delete the device from IoT Core
+- ```/test-connection``` Get Request. used for testing the connection
+- ```/things-register``` Post Request. used for register the devices into the IoT Core.
+## Code example
 
 
 
