@@ -8,6 +8,10 @@ const Themes = createMuiTheme({
      secondary: {
         main: '#C7C7C7'
      },
+     text: {
+        primary: '#2E4765',
+        secondary: 'rgba(0, 0, 0, 0.5)',
+     },
   },
   typography: {
      fontFamily: [
@@ -16,6 +20,7 @@ const Themes = createMuiTheme({
      ].join(','),
      fontWeightRegular: 500,
      fontWeightBold: 700,
+     color: 'textPrimary',
    },
    props: {
       // disables all ripples in Material UI
@@ -61,6 +66,11 @@ const Themes = createMuiTheme({
             },
          },
       },
+      MuiCardActionArea: {
+         focusHighlight: {
+            border: '2px solid blue',
+         }
+      }
    }
 });
 

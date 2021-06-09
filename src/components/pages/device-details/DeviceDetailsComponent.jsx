@@ -3,6 +3,7 @@ import ExampleBlueprint from '../../../assets/uploaded_blueprints/example.jpg';
 
 import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
@@ -38,8 +39,12 @@ const DeviceDetailsComponent = () => {
             <img src={ExampleBlueprint} alt="blueprint" className={classes.blueprint}/>
          </Box>
          <Box className={classes.blueprintContainer}>
-            <p>Device Name: {deviceId.deviceId}</p>
-            <p>Category: {deviceId.category}</p>
+            <Typography color="textPrimary">
+               Device Name: {deviceId.deviceId}
+            </Typography>
+            <Typography color="textPrimary">
+               Category: {deviceId.category}
+            </Typography>
          </Box>
       </Box>
    );
