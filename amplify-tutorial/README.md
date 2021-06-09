@@ -255,11 +255,49 @@ async function saveCoordinate() {
 
 # Device Register API
 An api used for register the devices in IoT Core written in lambda function
-## Endpoint
-- ```/delete-thing``` Post Request. used for delete the device from IoT Core
+## Endpoint Explanation
+| End Point Name  | Request Type | Explanation | Parameters | JSON Returns|
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| ```/delete-thing```  | Post Request    | used for delete the device from IoT Core |{"deviceName": [the name appear on IoT Core]}|
+| ```/test-connection```   | Get Request       |||
+```/things-register``` | Post Request | used for register the devices into the IoT Core|{"deviceName": [the name appear on IoT Core]}|
+
+- ```/delete-thing``` . used for delete the device from IoT Core
 - ```/test-connection``` Get Request. used for testing the connection
 - ```/things-register``` Post Request. used for register the devices into the IoT Core.
 ## Code example
+- Register device to IoT core
+```javascript
+async function handleSave() {
+    if (serialN !== "") {
+      setLoadingHidden('visible');
+      const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify({"deviceName":serialN})
+      };
+      fetch('https://awwwmy2l14.execute-api.us-west-2.amazonaws.com/dev/thing-register', requestOptions)
+          .then(checkStatus)
+          .then(response => response.text())
+          .then(handleResponse);
+    }
+  }
+```
+- Delete device from IoT core
+```javascript
+async function handleSave() {
+    if (serialN !== "") {
+      setLoadingHidden('visible');
+      const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify({"deviceName":serialN})
+      };
+      fetch('https://awwwmy2l14.execute-api.us-west-2.amazonaws.com/dev/delete-thing', requestOptions)
+          .then(checkStatus)
+          .then(response => response.text())
+          .then(handleResponse);
+    }
+  }
+  ```
 
 
 
