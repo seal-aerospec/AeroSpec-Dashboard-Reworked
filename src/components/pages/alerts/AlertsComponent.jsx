@@ -1,10 +1,10 @@
 import Alert from './Alert';
 import TimePicker from './TimePicker';
-import {listSchemaNews} from '../../../graphql/queries';
+import { listSchemaNews } from '../../../graphql/queries';
 import {API} from 'aws-amplify';
 import React, {useEffect, useState} from "react";
 import Box from '@material-ui/core/Box';
-import {makeStyles} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 const AlertsComponent = () => {
    const [selectedDateFrom, setSelectedDateFrom] = useState(new Date());
