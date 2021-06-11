@@ -67,7 +67,7 @@ const Device = (props) => {
                {props.serialN}
             </Typography>
             <Box className={`${classes.header} ${classes.text}`}>
-               <Typography variant="h5">AeroSpec 9</Typography>
+               <Typography variant="h5">{props.nickName}</Typography>
                <Box>
                   <IconButton onClick={removeCard}>
                      <BinIcon/>

@@ -107,7 +107,7 @@ const DeviceRegisterButton = (props) => {
 
   const handleBlueprintCanvasEditing = () => {
     setOpen(false);
-    props.disableCanvas("false");
+    props.disableCanvas(false);
   }
 
   const handleRegisterSuccessClose = () => {
@@ -127,12 +127,11 @@ const DeviceRegisterButton = (props) => {
     }
   }
   function handleResponse(response) {
-    props.addDeviceFunc(serialN);
+    props.addDeviceFunc(serialN, deviceNickname);
     setRegisterSuccessOpen(true);
     setDeviceRegInfo(response);
     setTimeout(() => setOpen(false),3000);
     setLoadingHidden('hidden');
-
   }
 
   function checkStatus(response) {
@@ -182,7 +181,7 @@ const DeviceRegisterButton = (props) => {
           />
           <TextField
             value={deviceNickname}
-            onChange={event => setSerialN(event.target.value)}
+            onChange={event => setDeviceNickname(event.target.value)}
             margin="dense"
             label="Device Nick Name"
             type="deviceNickName"
