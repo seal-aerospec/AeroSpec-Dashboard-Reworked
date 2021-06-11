@@ -20,6 +20,11 @@ const BlueprintsAndDevicesComponent = () => {
    const classes = useStyles();
    const [dotList, setDotList] = useState([]);
    const [canvasDisable, setCanvasDisable] = useState(true);
+   const [registerOpen, setRegisterOpen] = useState(false);
+   const [registeredCoordinate, setRegisteredCoordinate] = useState({
+      "x": 'Null',
+      "y": 'Null'
+   });
 
    useEffect(() => {
       console.log("canvasDisable", canvasDisable);
@@ -28,10 +33,20 @@ const BlueprintsAndDevicesComponent = () => {
    return (
       <Box display="flex" style={{width: '100%'}}>
          <Box className={classes.blueprintContainer}>
-            <BlueprintCanvas disableCanvas={setCanvasDisable} canvasDisabled={canvasDisable} dotList={dotList} setDotList={setDotList} />
+            <BlueprintCanvas
+               disableCanvas={setCanvasDisable}
+               canvasDisabled={canvasDisable}
+               setRegisterOpen={setRegisterOpen}
+               setRegisteredCoordinate={setRegisteredCoordinate}
+               dotList={dotList}
+               setDotList={setDotList} />
          </Box>
          <Box className={classes.deviceContainer}>
-            <DeviceList disableCanvas={setCanvasDisable}/>
+            <DeviceList
+               disableCanvas={setCanvasDisable}
+               registerOpen={registerOpen}
+               setRegisterOpen={setRegisterOpen}
+               registeredCoordinate={registeredCoordinate}/>
          </Box>
       </Box>
     );

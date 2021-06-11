@@ -39,28 +39,33 @@ const DeviceList = (props) => {
    async function handleRegSuccess(serialN, deviceNickName) {
       console.log("serialN",serialN);
       console.log("deviceNickName",deviceNickName);
-      // try {
-      //    // TODO: change the name of user
-      //    let deviceDataList = await Storage.get("user457", {download: true});
-      //    deviceDataList = await deviceDataList.Body.text();
-      //    deviceDataList = await JSON.parse(deviceDataList);
-      //    deviceDataList.deviceList.push({
-      //       "serialNumber": serialN,
-      //       "deviceNickName": deviceNickName
-      //    });
-      // } catch (err) {
-      //    console.log("ERROR:", err);
-      // }
-      // // if (serialN !== '') {
-      // //    setDeviceList([...deviceList, <Device serialN={serialN}/>])
-      // // }
-   }
-   async function fetchDeviceList() {
+      console.log("registeredCoordinate", props.registeredCoordinate);
       try {
          // TODO: change the name of user
          let deviceDataList = await Storage.get("user457", {download: true});
          deviceDataList = await deviceDataList.Body.text();
          deviceDataList = await JSON.parse(deviceDataList);
+         deviceDataList.deviceList.push({
+            "serialNumber": serialN,
+            "nickName": deviceNickName,
+            "coordinate": props.registeredCoordinate
+         });
+         await Storage.put("user457", deviceDataList);
+      } catch (err) {
+         console.log("ERROR:", err);
+      }
+      fetchDeviceList();
+      // if (serialN !== '') {
+      //    setDeviceList([...deviceList, <Device serialN={serialN}/>])
+      // }
+   }
+   async function fetchDeviceList() {
+      try {
+         // TODO: change the name of user
+         let deviceDataList = await Storage.get("user457", {download: true, cacheControl: 'no-cache'});
+         deviceDataList = await deviceDataList.Body.text();
+         deviceDataList = await JSON.parse(deviceDataList);
+         console.log(deviceDataList);
          const deviceCardsGroup = deviceDataList.deviceList.map((obj) => {
             return (
               <Device serialN={obj.serialNumber} nickName={obj.nickName}/>
@@ -76,7 +81,11 @@ const DeviceList = (props) => {
       <Paper variant="outlined" square className={classes.listContainer}>
          <Box className={classes.header}>
             <Typography display="inline" variant="h5">My Devices</Typography>
-            <DeviceRegisterButton disableCanvas={props.disableCanvas} addDeviceFunc={handleRegSuccess}/>
+            <DeviceRegisterButton
+               setRegisterOpen={props.setRegisterOpen}
+               registerOpen={props.registerOpen}
+               disableCanvas={props.disableCanvas}
+               addDeviceFunc={handleRegSuccess}/>
          </Box>
          <Box>
             {deviceList}

@@ -81,9 +81,6 @@ const BlueprintCanvas = (props) => {
       if (!props.canvasDisabled) {
          canvasRef.current.addEventListener("click", drawDevice);
       }
-      return () => {
-         canvasRef.current.removeEventListener("click",drawDevice);
-      };
    }, [props.canvasDisabled]);
 
    function handleImage(e) {
@@ -106,29 +103,34 @@ const BlueprintCanvas = (props) => {
 
    async function saveCoordinate() {
       canvasRef.current.removeEventListener("click",drawDevice);
-      props.disableCanvas(true);//parent disable method is true;
+      props.setRegisterOpen(true);
+      props.disableCanvas(true); // only adjust the disablility of canvas in parent component and read from parent
       if (currDevice.current) {
          props.dotList.push(currDevice);
-         alert("A new device's location has been saved at (x: " + currDevice.current.x
-            + " y: " + currDevice.current.y + ")");
-         try {
-            // TODO: change user456 with user's ID
-            let deviceList = await Storage.get("user456", {download: true});
-            deviceList = await deviceList.Body.text();
-            deviceList = await JSON.parse(deviceList);
-            // TODO: change device with name of device
-            deviceList.deviceList.push({
-               "name": "deviceName",
-               "coordinates": {
-                  "x": currDevice.current.x,
-                  "y": currDevice.current.y
-               }
-            });
-            await Storage.put("user456", deviceList);
-            currDevice.current = undefined;
-         } catch (err) {
-            console.error("ERROR: " + err);
-         }
+         props.setRegisteredCoordinate({
+            "x": currDevice.current.x,
+            "y": currDevice.current.y
+         })
+         // alert("A new device's location has been saved at (x: " + currDevice.current.x
+         //    + " y: " + currDevice.current.y + ")");
+         // try {
+         //    // TODO: change user456 with user's ID
+         //    let deviceList = await Storage.get("user456", {download: true});
+         //    deviceList = await deviceList.Body.text();
+         //    deviceList = await JSON.parse(deviceList);
+         //    // TODO: change device with name of device
+         //    deviceList.deviceList.push({
+         //       "name": "deviceName",
+         //       "coordinates": {
+         //          "x": currDevice.current.x,
+         //          "y": currDevice.current.y
+         //       }
+         //    });
+         //    await Storage.put("user456", deviceList);
+         //    currDevice.current = undefined;
+         // } catch (err) {
+         //    console.error("ERROR: " + err);
+         // }
       }
    }
 

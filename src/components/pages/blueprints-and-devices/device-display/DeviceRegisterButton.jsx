@@ -89,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 const DeviceRegisterButton = (props) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   const [successRegisterOpen, setRegisterSuccessOpen] = React.useState(false);
   const [deviceInfo, setDeviceRegInfo] = React.useState('[]');
   const [serialN, setSerialN] = React.useState("");
@@ -97,16 +96,16 @@ const DeviceRegisterButton = (props) => {
   const [deviceNickname, setDeviceNickname] = React.useState('');
 
   const handleClickOpen = () => {
-    setOpen(true);
+    props.setRegisterOpen(true);
     setRegisterSuccessOpen(false);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    props.setRegisterOpen(false);
   };
 
   const handleBlueprintCanvasEditing = () => {
-    setOpen(false);
+    props.setRegisterOpen(false);
     props.disableCanvas(false);
   }
 
@@ -130,7 +129,7 @@ const DeviceRegisterButton = (props) => {
     props.addDeviceFunc(serialN, deviceNickname);
     setRegisterSuccessOpen(true);
     setDeviceRegInfo(response);
-    setTimeout(() => setOpen(false),3000);
+    setTimeout(() => props.setRegisterOpen(false),3000);
     setLoadingHidden('hidden');
   }
 
@@ -158,7 +157,7 @@ const DeviceRegisterButton = (props) => {
           root: classes.registerBackDrop
         }
       }}
-      open={open}
+      open={props.registerOpen}
       onClose={handleClose}
       aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Regsiter Device</DialogTitle>
