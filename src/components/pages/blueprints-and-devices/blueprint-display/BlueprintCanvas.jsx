@@ -9,9 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import DeviceIcon from '../../../../assets/UI_component/source 2.png';
 import EditBlueprintButton from './EditBlueprintButton';
 
-import { Storage } from 'aws-amplify';
-import { ContactsOutlined, LensTwoTone } from '@material-ui/icons';
-
 const useStyles = makeStyles((theme) => ({
    hidden: {
       display: 'none',
@@ -111,26 +108,6 @@ const BlueprintCanvas = (props) => {
             "x": currDevice.current.x,
             "y": currDevice.current.y
          })
-         // alert("A new device's location has been saved at (x: " + currDevice.current.x
-         //    + " y: " + currDevice.current.y + ")");
-         // try {
-         //    // TODO: change user456 with user's ID
-         //    let deviceList = await Storage.get("user456", {download: true});
-         //    deviceList = await deviceList.Body.text();
-         //    deviceList = await JSON.parse(deviceList);
-         //    // TODO: change device with name of device
-         //    deviceList.deviceList.push({
-         //       "name": "deviceName",
-         //       "coordinates": {
-         //          "x": currDevice.current.x,
-         //          "y": currDevice.current.y
-         //       }
-         //    });
-         //    await Storage.put("user456", deviceList);
-         //    currDevice.current = undefined;
-         // } catch (err) {
-         //    console.error("ERROR: " + err);
-         // }
       }
    }
 

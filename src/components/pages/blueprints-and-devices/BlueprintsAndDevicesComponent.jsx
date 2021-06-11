@@ -26,10 +26,6 @@ const BlueprintsAndDevicesComponent = () => {
       "y": 'Null'
    });
 
-   useEffect(() => {
-      console.log("canvasDisable", canvasDisable);
-   }, [canvasDisable]);
-
    return (
       <Box display="flex" style={{width: '100%'}}>
          <Box className={classes.blueprintContainer}>

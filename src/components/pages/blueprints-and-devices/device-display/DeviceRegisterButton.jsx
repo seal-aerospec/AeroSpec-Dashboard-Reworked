@@ -13,7 +13,6 @@ import {
 
 import LoadingImage from '../../../../assets/UI_component/loading.gif';
 import RegistSuccessImage from '../../../../assets/UI_component/regist_success.png';
-import { fontSize } from '@material-ui/system';
 const useStyles = makeStyles((theme) => ({
   registerBackDrop: {
     background: 'rgba(0,0,0,0.2)'

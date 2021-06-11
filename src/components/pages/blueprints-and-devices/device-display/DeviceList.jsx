@@ -4,7 +4,6 @@ import DeviceRegisterButton from './DeviceRegisterButton';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Storage } from 'aws-amplify';
@@ -37,9 +36,6 @@ const DeviceList = (props) => {
    }, []);
 
    async function handleRegSuccess(serialN, deviceNickName) {
-      console.log("serialN",serialN);
-      console.log("deviceNickName",deviceNickName);
-      console.log("registeredCoordinate", props.registeredCoordinate);
       try {
          // TODO: change the name of user
          let deviceDataList = await Storage.get("user457", {download: true});
@@ -65,7 +61,6 @@ const DeviceList = (props) => {
          let deviceDataList = await Storage.get("user457", {download: true, cacheControl: 'no-cache'});
          deviceDataList = await deviceDataList.Body.text();
          deviceDataList = await JSON.parse(deviceDataList);
-         console.log(deviceDataList);
          const deviceCardsGroup = deviceDataList.deviceList.map((obj) => {
             return (
               <Device serialN={obj.serialNumber} nickName={obj.nickName}/>
