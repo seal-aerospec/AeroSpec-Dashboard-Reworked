@@ -130,6 +130,7 @@ const DeviceRegisterButton = (props) => {
     setDeviceRegInfo(response);
     setTimeout(() => props.setRegisterOpen(false),3000);
     setLoadingHidden('hidden');
+    console.log(response);
   }
 
   function checkStatus(response) {
