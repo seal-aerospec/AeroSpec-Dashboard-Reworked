@@ -142,7 +142,10 @@ const DeviceRegisterButton = (props) => {
   }
 
   const certificateArn = (JSON.parse(deviceInfo).body === undefined)? '':JSON.parse(deviceInfo).body.certificateArn;
-  const certificateId = (JSON.parse(deviceInfo).body === undefined)? '' :JSON.parse(deviceInfo).body.certificateId;
+  // we dont need this
+  // const certificateId = (JSON.parse(deviceInfo).body === undefined)? '' :JSON.parse(deviceInfo).body.certificateId;
+  const deviceCertificate = (JSON.parse(deviceInfo).body === undefined)? '' :JSON.parse(deviceInfo).body.certificatePem;
+  const deviceKey = (JSON.parse(deviceInfo).body === undefined)? '' :JSON.parse(deviceInfo).body.keyPair.PrivateKey;
   return (
     <Box>
       <Button className={classes.text} onClick={handleClickOpen}>Add +</Button>
@@ -220,18 +223,26 @@ const DeviceRegisterButton = (props) => {
           <DialogContent>
             <DialogContentText>
               <img src={RegistSuccessImage} className={classes.registSuccessImg}/>
-              Device (<b>{serialN}</b>) Registed Successfully
+              Device (<b>{serialN}</b>) Registered Successfully
             </DialogContentText>
             <DialogContentText>
               Certificate ARN:
-              </DialogContentText>
-              <DialogContentText>
+            </DialogContentText>
+            <DialogContentText>
               {certificateArn}
-              <DialogContentText/>
-              <DialogContentText>
-              Certificate Id: {certificateId}
-              </DialogContentText>
-              </DialogContentText>
+            </DialogContentText>
+            <DialogContentText>
+              Device Certificate: 
+            </DialogContentText>
+            <DialogContentText>
+              {deviceCertificate}
+            </DialogContentText>
+            <DialogContentText>
+              Device Key: 
+            </DialogContentText>
+            <DialogContentText>
+              {deviceKey}
+            </DialogContentText>
           </DialogContent>
           </Dialog>
           <img src={LoadingImage} className={classes.loadingImage} style={{visibility: loadingHidden}}/>
