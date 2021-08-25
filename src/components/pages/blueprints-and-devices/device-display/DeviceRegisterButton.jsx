@@ -128,7 +128,7 @@ const DeviceRegisterButton = (props) => {
     props.addDeviceFunc(serialN, deviceNickname);
     setRegisterSuccessOpen(true);
     setDeviceRegInfo(response);
-    setTimeout(() => props.setRegisterOpen(false),3000);
+    //setTimeout(() => props.setRegisterOpen(false),3000); // Can be used to close the successful registration popup after a certain amount of time.
     setLoadingHidden('hidden');
     console.log(response);
   }
@@ -221,6 +221,10 @@ const DeviceRegisterButton = (props) => {
             aria-labelledby="form-dialog-title"
           >
           <DialogContent>
+            <Button onClick={() => {navigator.clipboard.writeText(deviceCertificate)}}>
+            <DialogContentText>Copy Key</DialogContentText>
+            </Button>
+
             <DialogContentText>
               <img src={RegistSuccessImage} className={classes.registSuccessImg}/>
               Device (<b>{serialN}</b>) Registered Successfully
