@@ -50,7 +50,7 @@ const useStyles = makeStyles({
    },
 });
 
-const Alert = () => {
+const Alert = (props) => {
    const classes = useStyles();
    let [bellIcon, setBellIcon] = useState(<BellIcon2 />);
 
@@ -68,14 +68,15 @@ const Alert = () => {
             </Box>
             <Box className={classes.alertContent}>
                <Box>
-                  <Typography variant="subtitle2" color="textSecondary">OCTOBER 4, 2021</Typography>
+                  <Typography variant="subtitle2" color="textSecondary">Date: {props.date}</Typography>
+                  <Typography variant="subtitle2" color="textSecondary">Time: {props.time}</Typography>
                </Box>
                <Box marginBottom="1vh">
-                  <Typography variant="h6" color="textPrimary">AS3 Reading is currently very unhealthy</Typography>
-                  <Typography variant="h6" color="textPrimary" gutterBottom="true">Open window in Room 3</Typography>
+                  <Typography variant="h6" color="textPrimary">Device {props.id} Reading is very unhealthy</Typography>
+                  <Typography variant="h6" color="textPrimary" gutterBottom="true">Open window near position: {props.latitude} (Latitude), {props.longitude} (Longitude)</Typography>
                </Box>
                <Box>
-                  <Typography variant="body1" color="textPrimary">High carbon dioxide levels detected</Typography>
+                  <Typography variant="body1" color="textPrimary">High carbon dioxide levels detected: {props.itemValue}</Typography>
                </Box>
             </Box>
             <Box>
