@@ -66,6 +66,7 @@ async function handleDel(serialN) {
 }
 
 const Device = (props) => {
+
    const classes = useStyles();
 
    const [expanded, setExpanded] = useState(false);
@@ -84,7 +85,26 @@ const Device = (props) => {
       deleteDevice(props.serialN);
       handleDel(props.serialN);
       setRemove(true);
+      handleDelete();
+
    }
+
+   
+   async function handleDelete(){
+
+      //console.log('handleDelete: ' + props.serialNumber);
+      // Simple POST request with a JSON body
+      const Http = new XMLHttpRequest();
+      const url='https://awwwmy2l14.execute-api.us-west-2.amazonaws.com/dev/delete-thing';
+      Http.open("POST", url);
+      Http.send(JSON.stringify({
+        "deviceName": props.serialNumber   
+      }));
+      Http.onreadystatechange = (e) => {
+        console.log(Http.responseText)
+      }
+
+    }
 
    if (removed) {
       return false;
