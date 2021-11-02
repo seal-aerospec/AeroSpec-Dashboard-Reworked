@@ -9,8 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import DeviceIcon from '../../../../assets/UI_component/source 2.png';
 import EditBlueprintButton from './EditBlueprintButton';
 
-import { Storage } from 'aws-amplify';
-
 const useStyles = makeStyles((theme) => ({
    hidden: {
       display: 'none',
@@ -49,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
    text: {
       color: '#2E4765',
       opacity: '56%',
+   },
+   hidden: {
+      visibility: 'hidden'
    }
 }));
 
@@ -59,22 +60,25 @@ const BlueprintCanvas = (props) => {
    let [modalOpen, setModalOpen] = useState(false);
    let [blueprint, setBlueprint] = useState();
 
-   // draws placed device on blueprint
-   useEffect(() => {
-      const canvas = canvasRef.current;
-      const context = canvas.getContext('2d');
+   function drawDevice(event) {
+      const context = canvasRef.current.getContext('2d');
       const dot = new Image();
       dot.src = DeviceIcon;
-      canvas.addEventListener("click", function (event) {
-         if (currDevice.current !== undefined) {
-            context.clearRect(currDevice.current.x, currDevice.current.y, 25, 25);
-         }
-         var x = event.offsetX - 10;
-         var y = event.offsetY - 10;
-         context.drawImage(dot, x, y, 25, 25);
-         currDevice.current = { "x": x, "y": y };
-      });
-   }, []);
+      if (currDevice.current !== undefined) {
+         context.clearRect(currDevice.current.x, currDevice.current.y, 25, 25);
+      }
+      var x = event.offsetX - 10;
+      var y = event.offsetY - 10;
+      context.drawImage(dot, x, y, 25, 25);
+      currDevice.current = { "x": x, "y": y };
+   }
+
+   // draws placed device on blueprint
+   useEffect(() => {
+      if (!props.canvasDisabled) {
+         canvasRef.current.addEventListener("click", drawDevice);
+      }
+   }, [props.canvasDisabled]);
 
    function handleImage(e) {
       var reader = new FileReader();
@@ -92,39 +96,25 @@ const BlueprintCanvas = (props) => {
             canvas.height = event.target.height;
          }
       }
-      reader.readAsDataURL(e.target.files[0]);
    }
 
    async function saveCoordinate() {
+      canvasRef.current.removeEventListener("click",drawDevice);
+      props.setRegisterOpen(true);
+      props.disableCanvas(true); // only adjust the disablility of canvas in parent component and read from parent
       if (currDevice.current) {
          props.dotList.push(currDevice);
-         alert("A new device's location has been saved at (x: " + currDevice.current.x
-            + " y: " + currDevice.current.y + ")");
-         try {
-            // TODO: change user456 with user's ID
-            let deviceList = await Storage.get("user456", {download: true});
-            deviceList = await deviceList.Body.text();
-            deviceList = await JSON.parse(deviceList);
-            // TODO: change device with name of device
-            deviceList.deviceList.push({
-               "name": "deviceName",
-               "coordinates": {
-                  "x": currDevice.current.x,
-                  "y": currDevice.current.y
-               }
-            });
-            await Storage.put("user456", deviceList);
-            currDevice.current = undefined;
-         } catch (err) {
-            console.error("ERROR: " + err);
-         }
+         props.setRegisteredCoordinate({
+            "x": currDevice.current.x,
+            "y": currDevice.current.y
+         })
       }
    }
 
    return (
       <Paper style={{ padding: "5vh" }}>
          <Box display="flex" flexWrap="wrap" className={classes.blueprintHeader}>
-            <Typography variant="body1" className={classes.text}>
+            <Typography variant="body1" className={props.canvasDisabled ? `${classes.text} ${classes.hidden}`: classes.text} >
                Pick and place the sensor on its location
             </Typography>
             <Box display="flex" justifyContent="center" flexWrap="wrap">
@@ -133,7 +123,7 @@ const BlueprintCanvas = (props) => {
                   setModalOpen={setModalOpen}
                   handleImage={handleImage}
                />
-               <Button className={classes.saveBtn} onClick={saveCoordinate}>
+               <Button className={props.canvasDisabled? `${classes.saveBtn} ${classes.hidden}`: classes.saveBtn} onClick={saveCoordinate}>
                   Save Changes
                </Button>
             </Box>

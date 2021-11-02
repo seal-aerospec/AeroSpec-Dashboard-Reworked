@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import BlueprintCanvas from './blueprint-display/BlueprintCanvas';
 import DeviceList from './device-display/DeviceList';
@@ -19,14 +19,30 @@ const useStyles = makeStyles((theme) => ({
 const BlueprintsAndDevicesComponent = () => {
    const classes = useStyles();
    const [dotList, setDotList] = useState([]);
+   const [canvasDisable, setCanvasDisable] = useState(true);
+   const [registerOpen, setRegisterOpen] = useState(false);
+   const [registeredCoordinate, setRegisteredCoordinate] = useState({
+      "x": 'Null',
+      "y": 'Null'
+   });
 
    return (
       <Box display="flex" style={{width: '100%'}}>
          <Box className={classes.blueprintContainer}>
-            <BlueprintCanvas dotList={dotList} setDotList={setDotList} />
+            <BlueprintCanvas
+               disableCanvas={setCanvasDisable}
+               canvasDisabled={canvasDisable}
+               setRegisterOpen={setRegisterOpen}
+               setRegisteredCoordinate={setRegisteredCoordinate}
+               dotList={dotList}
+               setDotList={setDotList} />
          </Box>
          <Box className={classes.deviceContainer}>
-            <DeviceList />
+            <DeviceList
+               disableCanvas={setCanvasDisable}
+               registerOpen={registerOpen}
+               setRegisterOpen={setRegisterOpen}
+               registeredCoordinate={registeredCoordinate}/>
          </Box>
       </Box>
     );

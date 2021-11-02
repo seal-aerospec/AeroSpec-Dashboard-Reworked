@@ -72,7 +72,7 @@ const EditBlueprintButton = (props) => {
             onClick={() => props.setModalOpen(true)}
             className={classes.editBtn}
          >
-            Edit Blueprint
+            Upload Different Blueprint
          </Button>
 
          <Dialog
@@ -90,7 +90,7 @@ const EditBlueprintButton = (props) => {
             onClose={() => props.setModalOpen(false)}
             aria-labelledby="edit-blueprint-title"
          >
-            <DialogTitle id="edit-blueprint-title">Edit Blueprint</DialogTitle>
+            <DialogTitle id="edit-blueprint-title">Upload a Different Blueprint</DialogTitle>
             <DialogContent>
                <Button
                   variant="contained"
