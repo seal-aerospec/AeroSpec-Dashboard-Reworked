@@ -11,6 +11,7 @@ import BellIcon from '../../../assets/UI_component_svg/BellIcon';
 import BellIcon2 from '../../../assets/UI_component_svg/BellIcon2';
 import ExampleAlert from '../../../assets/uploaded_blueprints/alerts-floor-plan-icon.jpg';
 
+
 const useStyles = makeStyles({
    alertCards: {
       border: '2.5px solid #FFFFFF',
